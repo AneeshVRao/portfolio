@@ -1,0 +1,78 @@
+import { useState } from 'react'
+import { Plus, Minus } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { faqs } from '../data/faqs'
+import FadeUp from './ui/FadeUp'
+import SectionEyebrow from './ui/SectionEyebrow'
+
+export default function FAQ() {
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  const toggleFAQ = (id: string) => {
+    setActiveId((prev) => (prev === id ? null : id))
+  }
+
+  return (
+    <section id="faq" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
+      <div className="container">
+        <div className="faq-grid">
+          {/* Left Column: Heading + Call to Action */}
+          <FadeUp>
+            <SectionEyebrow>FAQ</SectionEyebrow>
+            <h2 className="section-heading">Frequently Asked Questions</h2>
+            <p className="section-sub" style={{ marginBottom: 32 }}>
+              Have questions about my technical background, development workflows, or availability? Let's clear them up. If your question isn't answered here, feel free to drop me an email directly.
+            </p>
+            <a 
+              href="mailto:hello@aneeshrao.dev" 
+              className="pain__checklist-btn"
+              style={{ display: 'inline-flex', marginTop: 0 }}
+            >
+              Ask a Question
+            </a>
+          </FadeUp>
+
+          {/* Right Column: Accordion List */}
+          <div className="faq-list">
+            {faqs.map((faq, index) => {
+              const isOpen = activeId === faq.id
+              return (
+                <FadeUp key={faq.id} delay={index * 0.08}>
+                  <div className="faq-item">
+                    <button 
+                      className="faq-item__header" 
+                      onClick={() => toggleFAQ(faq.id)}
+                      aria-expanded={isOpen}
+                    >
+                      <span>{faq.q}</span>
+                      <span className="faq-item__icon">
+                        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                      </span>
+                    </button>
+                    
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="faq-item__panel-motion"
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div className="faq-item__content">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </FadeUp>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

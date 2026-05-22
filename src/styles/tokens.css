@@ -1,0 +1,39 @@
+:root {
+  /* ── Backgrounds ────────────────────────────── */
+  --bg-dark:         #0d0d0d;
+  --bg-light:        #f5f0eb;
+  --bg-white:        #ffffff;
+  --bg-card:         #faf9f7;
+
+  /* ── Accent (burnt orange) ──────────────────── */
+  --accent:          #c0520a;
+  --accent-hover:    #a3440a;
+  --accent-light:    rgba(192, 82, 10, 0.12);
+
+  /* ── Text ───────────────────────────────────── */
+  --text-primary:    #1a1a1a;
+  --text-secondary:  #555555;
+  --text-muted:      #888888;
+  --text-on-dark:    #f5f0eb;
+
+  /* ── Icon teal ──────────────────────────────── */
+  --icon-teal:       #1a7a6a;
+  --icon-teal-bg:    rgba(26, 122, 106, 0.12);
+
+  /* ── Borders ────────────────────────────────── */
+  --border:          rgba(0, 0, 0, 0.08);
+  --border-strong:   rgba(0, 0, 0, 0.18);
+
+  /* ── Fonts ──────────────────────────────────── */
+  --font-display:    'Playfair Display', serif;
+  --font-body:       'DM Sans', sans-serif;
+  --font-script:     'Dancing Script', cursive;
+
+  /* ── Hero gradient overlay ──────────────────── */
+  --hero-overlay: linear-gradient(
+    120deg,
+    rgba(192, 82, 10, 0.72) 0%,
+    rgba(140, 50, 5, 0.50) 45%,
+    rgba(10, 10, 10, 0.20) 100%
+  );
+}
