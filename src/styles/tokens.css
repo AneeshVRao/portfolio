@@ -49,10 +49,10 @@
 
   /* ── Github Contribution Colors ─────────────── */
   --contrib-level-0: #ebedf0;
-  --contrib-level-1: #9be9a8;
-  --contrib-level-2: #40c463;
-  --contrib-level-3: #30a14e;
-  --contrib-level-4: #216e39;
+  --contrib-level-1: #d1fae5;
+  --contrib-level-2: #a7f3d0;
+  --contrib-level-3: #34d399;
+  --contrib-level-4: #059669;
 }
 
 /* ── System Prefers Dark Mode ───────────────── */
@@ -80,10 +80,10 @@
     --navbar-bg-beige: rgba(22, 22, 22, 0.88);
 
     --contrib-level-0: #161b22;
-    --contrib-level-1: #0e4429;
-    --contrib-level-2: #006d32;
-    --contrib-level-3: #26a641;
-    --contrib-level-4: #39d353;
+    --contrib-level-1: #064e3b;
+    --contrib-level-2: #047857;
+    --contrib-level-3: #10b981;
+    --contrib-level-4: #34d399;
   }
 }
 
@@ -111,8 +111,8 @@
   --navbar-bg-beige: rgba(22, 22, 22, 0.88);
 
   --contrib-level-0: #161b22;
-  --contrib-level-1: #0e4429;
-  --contrib-level-2: #006d32;
-  --contrib-level-3: #26a641;
-  --contrib-level-4: #39d353;
+  --contrib-level-1: #064e3b;
+  --contrib-level-2: #047857;
+  --contrib-level-3: #10b981;
+  --contrib-level-4: #34d399;
 }

@@ -96,7 +96,10 @@ function GithubContributions({
   if (error) return null // Fail silently to keep layout clean
 
   const lastYearContribs = data?.contributions
-    ? data.contributions.slice(-371)
+    ? [...data.contributions]
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .filter(c => c.date <= new Date().toISOString().split('T')[0])
+        .slice(-371)
     : []
 
   return (

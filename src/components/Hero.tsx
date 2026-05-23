@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import heroPhoto from '../assets/images/hero-photo.jpg'
 
 const roles = [
-  { num: '01', label: 'ECE @ NIT Warangal',          active: true },
-  { num: '02', label: 'SIH 2025 Finalist',            active: false },
-  { num: '03', label: 'Building in public since 2023', active: false },
+  { num: '01', label: 'Full-Stack & AI Developer',   active: true },
+  { num: '02', label: 'ECE @ NIT Warangal',          active: false },
+  { num: '03', label: 'Hardware-Software Codesign',  active: false },
 ]
 
 const phrase = "Hi, I'm Aneesh"
@@ -100,8 +100,8 @@ export default function Hero() {
             {showCursor && <span className="typewriter-cursor">|</span>}
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>
-            ECE sophomore at NIT Warangal. Building Go load balancers,
-            Verilog cores, and AI tools that actually ship.
+            ECE Sophomore at NIT Warangal. Developing full-stack web applications
+            and AI-driven tools, while bridging software systems with hardware design in Verilog.
           </p>
         </div>
 

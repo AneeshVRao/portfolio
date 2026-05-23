@@ -99,30 +99,35 @@ button, .cta-button {
 
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1200px;
   height: 64px;
   z-index: 100;
   display: flex;
   align-items: center;
-  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: #ffffff;
   background: transparent;
 }
 
 .navbar--scrolled {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  top: 12px;
+  height: 56px;
+  border-radius: 999px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .navbar--theme-dark {
-  background: var(--navbar-bg-dark);
+  background: rgba(10, 10, 10, 0.75);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .navbar--theme-dark .navbar__logo {
   color: #ffffff;
@@ -132,9 +137,10 @@ button, .cta-button {
 }
 
 .navbar--theme-light {
-  background: var(--navbar-bg-light);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   color: var(--text-primary);
-  box-shadow: 0 1px 0 var(--border);
 }
 .navbar--theme-light .navbar__logo {
   color: var(--text-primary);
@@ -144,9 +150,10 @@ button, .cta-button {
 }
 
 .navbar--theme-beige {
-  background: var(--navbar-bg-beige);
+  background: rgba(245, 241, 231, 0.75);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   color: var(--text-primary);
-  box-shadow: 0 1px 0 var(--border);
 }
 .navbar--theme-beige .navbar__logo {
   color: var(--text-primary);
@@ -159,14 +166,20 @@ button, .cta-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .navbar__logo {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 800;
+  font-size: 20px;
   letter-spacing: 0.05em;
-  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+}
+.navbar__logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar__menu {
@@ -181,7 +194,7 @@ button, .cta-button {
   position: relative;
   padding: 4px 0;
   opacity: 0.85;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar__link:hover {
@@ -206,19 +219,28 @@ button, .cta-button {
   transform-origin: left;
 }
 
+.navbar__link--active {
+  opacity: 1 !important;
+  color: var(--accent) !important;
+}
+.navbar__link--active::after {
+  transform: scaleX(1) !important;
+  background: var(--accent) !important;
+}
+
 .navbar__cta {
   background: var(--accent);
   color: #ffffff !important;
   font-weight: 600;
   font-size: 13px;
   border-radius: 999px;
-  padding: 10px 22px;
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 8px 20px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar__cta:hover {
   background: var(--accent-hover);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(192, 82, 10, 0.25);
 }
 
