@@ -24,6 +24,16 @@
   --border:          rgba(0, 0, 0, 0.08);
   --border-strong:   rgba(0, 0, 0, 0.18);
 
+  /* ── Component specific colors ──────────────── */
+  --bg-ghost:        rgba(0, 0, 0, 0.03);
+  --bg-ghost-hover:  rgba(0, 0, 0, 0.06);
+  --bg-tag:          rgba(0, 0, 0, 0.04);
+  --border-tag:      rgba(0, 0, 0, 0.01);
+  --bg-image-wrap:   rgba(0, 0, 0, 0.02);
+  --navbar-bg-dark:  rgba(13, 13, 13, 0.85);
+  --navbar-bg-light: rgba(255, 255, 255, 0.88);
+  --navbar-bg-beige: rgba(245, 240, 235, 0.88);
+
   /* ── Fonts ──────────────────────────────────── */
   --font-display:    'Playfair Display', serif;
   --font-body:       'DM Sans', sans-serif;
@@ -36,4 +46,54 @@
     rgba(140, 50, 5, 0.50) 45%,
     rgba(10, 10, 10, 0.20) 100%
   );
+}
+
+/* ── System Prefers Dark Mode ───────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-white:      #111111;
+    --bg-card:       #1a1a1a;
+    --bg-light:      #161616;
+    --bg-dark:       #080808;
+    --text-primary:  #f0ece6;
+    --text-secondary:#a09890;
+    --text-muted:    #66605a;
+    --border:        rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --accent:        #e06820;
+    --accent-hover:  #ff853c;
+    --accent-light:  rgba(224, 104, 32, 0.14);
+    --bg-ghost:        rgba(255, 255, 255, 0.04);
+    --bg-ghost-hover:  rgba(255, 255, 255, 0.08);
+    --bg-tag:          rgba(255, 255, 255, 0.05);
+    --border-tag:      rgba(255, 255, 255, 0.03);
+    --bg-image-wrap:   rgba(255, 255, 255, 0.02);
+    --navbar-bg-dark:  rgba(8, 8, 8, 0.85);
+    --navbar-bg-light: rgba(17, 17, 17, 0.88);
+    --navbar-bg-beige: rgba(22, 22, 22, 0.88);
+  }
+}
+
+/* ── Explicit Dark Theme Override ───────────── */
+[data-theme="dark"] {
+  --bg-white:      #111111;
+  --bg-card:       #1a1a1a;
+  --bg-light:      #161616;
+  --bg-dark:       #080808;
+  --text-primary:  #f0ece6;
+  --text-secondary:#a09890;
+  --text-muted:    #66605a;
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --accent:        #e06820;
+  --accent-hover:  #ff853c;
+  --accent-light:  rgba(224, 104, 32, 0.14);
+  --bg-ghost:        rgba(255, 255, 255, 0.04);
+  --bg-ghost-hover:  rgba(255, 255, 255, 0.08);
+  --bg-tag:          rgba(255, 255, 255, 0.05);
+  --border-tag:      rgba(255, 255, 255, 0.03);
+  --bg-image-wrap:   rgba(255, 255, 255, 0.02);
+  --navbar-bg-dark:  rgba(8, 8, 8, 0.85);
+  --navbar-bg-light: rgba(17, 17, 17, 0.88);
+  --navbar-bg-beige: rgba(22, 22, 22, 0.88);
 }

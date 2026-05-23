@@ -92,32 +92,7 @@ export default function Projects() {
 
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="project-btn"
-              style={{
-                marginTop: '40px',
-                padding: '12px 28px',
-                fontSize: '14px',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                border: '2px solid var(--accent)',
-                color: 'var(--accent)',
-                background: 'transparent',
-                fontWeight: 'bold',
-                borderRadius: '999px',
-                transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--accent)'
-                e.currentTarget.style.color = '#ffffff'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent'
-                e.currentTarget.style.color = 'var(--accent)'
-              }}
+              className="projects-more-btn"
             >
               {isExpanded ? (
                 <>
