@@ -23,7 +23,7 @@ async function main() {
       await hero.scrollIntoViewIfNeeded();
       await page.waitForTimeout(1000);
       console.log('Taking hero section screenshot...');
-      await hero.screenshot({ path: path.join(__dirname, 'hero.png') });
+      await hero.screenshot({ path: path.join(__dirname, '../docs/screenshots', 'hero.png') });
     } else {
       console.log('Hero section not found');
     }
@@ -34,13 +34,13 @@ async function main() {
       await projects.scrollIntoViewIfNeeded();
       await page.waitForTimeout(1500); // Wait for animations
       console.log('Taking projects section screenshot...');
-      await projects.screenshot({ path: path.join(__dirname, 'projects.png') });
+      await projects.screenshot({ path: path.join(__dirname, '../docs/screenshots', 'projects.png') });
     } else {
       console.log('Projects section not found');
     }
 
     console.log('Taking full page screenshot...');
-    await page.screenshot({ path: path.join(__dirname, 'fullpage.png'), fullPage: true });
+    await page.screenshot({ path: path.join(__dirname, '../docs/screenshots', 'fullpage.png'), fullPage: true });
 
     console.log('Screenshots taken successfully!');
   } catch (err) {

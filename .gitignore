@@ -87,3 +87,11 @@ tmp/
 # Ignore: auto-generated media outputs
 media/output/
 remotion/out/
+
+# Auto-generated screenshots
+docs/screenshots/
+*.png
+*.jpg
+!public/og-image.jpg
+!src/assets/**/*.jpg
+!src/assets/**/*.png
