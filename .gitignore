@@ -44,10 +44,15 @@ test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+screenshots/
 
 # Agent files and lockfiles
 .agents/
 skills-lock.json
+.claude/
+scripts/
+CLAUDE.md
+BRAINSTORM.md
 
 # Local env files
 .env
