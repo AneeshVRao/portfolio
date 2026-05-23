@@ -4,7 +4,7 @@ import SectionEyebrow from './ui/SectionEyebrow'
 
 export default function Experience() {
   return (
-    <section id="experience" aria-label="Work and Academic History" style={{ background: 'var(--bg-white)', padding: '80px 0', overflow: 'hidden' }}>
+    <section id="experience" aria-label="Work and Academic History" style={{ background: 'var(--bg-light)', padding: '80px 0', overflow: 'hidden' }}>
       <div className="container">
         <FadeUp>
           <SectionEyebrow>Journey</SectionEyebrow>

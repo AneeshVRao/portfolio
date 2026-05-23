@@ -79,7 +79,7 @@ export default function Projects() {
   }, [selectedProject])
 
   return (
-    <section id="projects" aria-label="Software Projects" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
+    <section id="projects" aria-label="Software Projects" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
       <div className="container">
         <FadeUp>
           <SectionEyebrow>Projects</SectionEyebrow>

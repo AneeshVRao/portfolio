@@ -5,7 +5,7 @@ import { getImageUrl } from '../utils/images'
 
 export default function Method() {
   return (
-    <section id="method" aria-label="Core Engineering Methodology" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
+    <section id="method" aria-label="Core Engineering Methodology" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
       <div className="container">
         {/* Top Header Grid */}
         <div className="method-grid-top">

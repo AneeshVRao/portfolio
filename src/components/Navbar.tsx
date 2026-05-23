@@ -47,13 +47,14 @@ export default function Navbar() {
       setScrolled(!isTop)
 
       // Section theme mapping
-      const sections = ['hero', 'about', 'toolkit', 'method', 'projects', 'certifications', 'faq', 'contact']
+      const sections = ['hero', 'about', 'toolkit', 'experience', 'method', 'projects', 'certifications', 'faq', 'contact']
       const sectionThemes: Record<string, 'dark' | 'light' | 'beige'> = {
         hero: 'dark',
         about: 'beige',
         toolkit: 'light',
-        method: 'beige',
-        projects: 'light',
+        experience: 'beige',
+        method: 'light',
+        projects: 'beige',
         certifications: 'light',
         faq: 'beige',
         contact: 'dark',
@@ -158,6 +159,13 @@ export default function Navbar() {
               onClick={() => setMenuActive(false)}
             >
               Toolkit
+            </a>
+            <a 
+              href="#experience" 
+              className={`navbar__link ${activeSection === 'experience' ? 'navbar__link--active' : ''}`} 
+              onClick={() => setMenuActive(false)}
+            >
+              Experience
             </a>
             <a 
               href="#projects" 
