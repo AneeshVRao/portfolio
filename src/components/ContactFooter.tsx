@@ -1,51 +1,32 @@
 import { useState } from 'react'
 import { ArrowRight, Mail } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
-
-const GithubIcon = ({ size = 16 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-)
-
-const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-)
+import { GithubIcon, LinkedinIcon } from './ui/icons'
 
 export default function ContactFooter() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading'>('idle')
+  const [showPhone, setShowPhone] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
+  const [lastSubmit, setLastSubmit] = useState(0)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
 
+    if (honeypot) {
+      // Quietly reject bots
+      setEmail('')
+      return
+    }
+
+    if (Date.now() - lastSubmit < 30000) {
+      alert('Please wait 30 seconds before submitting again.')
+      return
+    }
+
     setStatus('loading')
+    setLastSubmit(Date.now())
 
     // EmailJS configuration keys (from vite environment variables)
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_default'
@@ -84,9 +65,11 @@ export default function ContactFooter() {
         alert(`Success! Thank you for reaching out. Aneesh will contact you at ${email} soon.`)
         setEmail('')
       } else {
+        setLastSubmit(0)
         throw new Error('EmailJS send error')
       }
     } catch (err) {
+      setLastSubmit(0)
       console.error('EmailJS Error:', err)
       alert('Oops! There was a problem sending your message. Please try again later.')
     } finally {
@@ -117,12 +100,31 @@ export default function ContactFooter() {
               <div className="footer-col__title">Email</div>
               <div className="footer-col__value" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <a href="mailto:aneeshvrao2017@gmail.com">aneeshvrao2017@gmail.com</a>
-                <a href="mailto:av24ecb0a03@student.nitw.ac.in" style={{ fontSize: '0.85em', opacity: 0.8 }}>av24ecb0a03@student.nitw.ac.in</a>
               </div>
 
               <div className="footer-col__title">Phone</div>
               <div className="footer-col__value">
-                <a href="tel:+919611476544">+91 9611476544</a>
+                {showPhone ? (
+                  <a href="tel:+919611476544">+91 9611476544</a>
+                ) : (
+                  <button 
+                    onClick={() => setShowPhone(true)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--text-on-dark)',
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '20px',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      padding: 0,
+                      textAlign: 'left'
+                    }}
+                    aria-label="Reveal phone number"
+                  >
+                    Reveal Phone Number
+                  </button>
+                )}
               </div>
             </FadeUp>
 
@@ -142,6 +144,15 @@ export default function ContactFooter() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="footer-input"
                   required
+                />
+                <input 
+                  type="text" 
+                  name="website" 
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: 'none' }} 
+                  tabIndex={-1} 
+                  autoComplete="off"
                 />
                 <button 
                   type="submit" 
@@ -163,7 +174,7 @@ export default function ContactFooter() {
           {/* Bottom Copyright and Social Links */}
           <div className="footer-bottom">
             <div>
-              © 2025 Aneesh Venkatesha Rao. All Rights Reserved.
+              © {new Date().getFullYear()} Aneesh Venkatesha Rao. All Rights Reserved.
             </div>
             <div className="footer-socials">
               <a 

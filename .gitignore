@@ -39,6 +39,7 @@ fullpage.png
 hero.png
 projects.png
 take_screenshots.cjs
+test-portfolio.cjs
 test-results/
 playwright-report/
 blob-report/

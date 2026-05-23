@@ -1,11 +1,7 @@
 import { methodData } from '../data/method'
 import FadeUp from './ui/FadeUp'
 import SectionEyebrow from './ui/SectionEyebrow'
-
-// Helper to resolve images dynamically in Vite
-const getImageUrl = (imagePath: string) => {
-  return new URL(`../assets/images/${imagePath}`, import.meta.url).href
-}
+import { getImageUrl } from '../utils/images'
 
 export default function Method() {
   return (

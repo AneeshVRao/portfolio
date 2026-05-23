@@ -60,20 +60,40 @@ interface GithubContributionsResponse {
   contributions: ContributionDay[]
 }
 
+function validateContribData(data: unknown): GithubContributionsResponse | null {
+  if (!data || typeof data !== 'object') return null
+  const d = data as Record<string, unknown>
+  if (!d.total || typeof d.total !== 'object') return null
+  
+  const totalObj = d.total as Record<string, unknown>
+  for (const key in totalObj) {
+    if (typeof totalObj[key] !== 'number') return null
+  }
+  
+  if (!Array.isArray(d.contributions)) return null
+  for (const c of d.contributions) {
+    if (!c || typeof c !== 'object') return null
+    const day = c as Record<string, unknown>
+    if (typeof day.date !== 'string' || typeof day.count !== 'number' || typeof day.level !== 'number') {
+      return null
+    }
+  }
+  
+  return data as GithubContributionsResponse
+}
+
 function GithubContributions({
   data,
+  totalContributions,
   loading,
   error,
 }: {
   data: GithubContributionsResponse | null
+  totalContributions: number
   loading: boolean
   error: boolean
 }) {
   if (error) return null // Fail silently to keep layout clean
-
-  const totalContributions = data?.total
-    ? Object.values(data.total).reduce((sum, val) => sum + val, 0)
-    : 0
 
   const lastYearContribs = data?.contributions
     ? data.contributions.slice(-371)
@@ -141,9 +161,14 @@ export default function About() {
         if (!res.ok) throw new Error('API response error')
         return res.json()
       })
-      .then((resData: GithubContributionsResponse) => {
-        setContribData(resData)
-        setLoading(false)
+      .then((resData: unknown) => {
+        const validated = validateContribData(resData)
+        if (validated) {
+          setContribData(validated)
+          setLoading(false)
+        } else {
+          throw new Error('API response failed validation')
+        }
       })
       .catch(err => {
         if (err.name !== 'AbortError') {
@@ -177,11 +202,10 @@ export default function About() {
           {/* Right Column: Statistics Grid */}
           <div className="stats-grid">
             {aboutData.stats.map((stat, index) => {
-              const targetNum = parseInt(stat.value.replace(/[^0-9]/g, ''), 10)
               return (
                 <FadeUp key={index} delay={index * 0.1}>
                   <div className="stat-card">
-                    <StatCounter target={targetNum} valueString={stat.value} />
+                    <StatCounter target={stat.numericValue} valueString={stat.value} />
                     <div className="stat-label">{stat.label}</div>
                   </div>
                 </FadeUp>
@@ -242,7 +266,7 @@ export default function About() {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               style={{ overflow: 'hidden' }}
             >
-              <GithubContributions data={contribData} loading={loading} error={error} />
+              <GithubContributions data={contribData} totalContributions={totalContributions} loading={loading} error={error} />
             </motion.div>
           )}
         </AnimatePresence>

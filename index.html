@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://plausible.io;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data:;
+      connect-src 'self' https://github-contributions-api.jogruber.de https://api.emailjs.com https://plausible.io;
+    ">
     <script>
       (function() {
         let saved = null;
@@ -23,9 +31,6 @@
 
     <!-- Plausible Analytics -->
     <script defer data-domain="aneesh.codes" src="https://plausible.io/js/script.js"></script>
-
-    <!-- Font Preloading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" />
 
     <title>Aneesh Venkatesha Rao — Portfolio</title>
     
