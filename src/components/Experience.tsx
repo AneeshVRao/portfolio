@@ -41,8 +41,8 @@ export default function Experience() {
                         <div className="timeline-card__header">
                           <span className="timeline-card__period">{item.period}</span>
                           <span className="timeline-card__badge" style={{
-                            background: item.type === 'education' ? 'rgba(26,122,106,0.08)' : 'rgba(192,82,10,0.08)',
-                            color: item.type === 'education' ? 'var(--accent-green, #1a7a6a)' : 'var(--accent)'
+                            background: item.type === 'education' ? 'var(--icon-teal-bg)' : 'var(--accent-light)',
+                            color: item.type === 'education' ? 'var(--icon-teal)' : 'var(--accent)'
                           }}>
                             {item.type === 'education' ? 'Education' : 'Achievement & Work'}
                           </span>

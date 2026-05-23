@@ -1,104 +1,107 @@
-# 🌟 Aneesh Venkatesha Rao — Developer Portfolio
+# Aneesh Venkatesha Rao — Portfolio
 
-A sleek, premium, high-fidelity developer portfolio built from scratch to showcase systems programming, AI/ML integrations, and hardware-software codesign.
+> Live at **[aneesh.codes](https://aneesh.codes)**
 
-![Full Portfolio Desktop Preview](./fullpage.png)
-
----
-
-## 🎨 Design Philosophy & User Experience
-
-The website is styled using a modern, responsive **Glassmorphic Design** system with vanilla CSS. It implements a carefully structured background-alternating pattern to distinguish sections and maintain visual interest:
-
-$$\text{Dark (Hero)} \longrightarrow \text{Beige (About)} \longrightarrow \text{Light (Toolkit)} \longrightarrow \text{Beige (Experience)} \longrightarrow \text{Light (Method)} \longrightarrow \text{Beige (Projects)} \longrightarrow \text{Light (Certifications)} \longrightarrow \text{Beige (FAQ)} \longrightarrow \text{Dark (Contact \& Footer)}$$
-
-### Key Interface Highlights
-
-*   **Floating Glassmorphic Navbar**: A header featuring dynamic CSS blur filters (`backdrop-filter`) and borders. Upon scrolling down, it collapses into a floating pill shape. It tracks active sections dynamically, highlighting the corresponding nav link in real time.
-*   **Typing Hero Greeting**: A greeting card featuring ECE and AI-focused roles, animated with a micro-interactive typewriter typewriter header using Framer Motion.
-*   **Live GitHub Commit Calendar**: An interactive calendar card that queries the live GitHub history API, filters future dates, and displays the **last 365 days** of activity in a high-contrast, custom emerald-green contribution grid.
-*   **Filtered Technical Toolkit**: A tabbed list sorting programming languages, backend frameworks, databases, and low-level FPGA/Verilog tools based on verified codebase evidence.
-*   **Project Specification Drawers**: Clicking a project card triggers an animated, slide-out drawer containing detailed project notes, specifications, repository links, and architecture diagrams.
-*   **Security & Anti-Spam Safeguards**: The contact form features a client-side honeypot field, 30-second submission rate limiting, and hides sensitive personal details behind a click-to-reveal toggle state to prevent crawler indexing.
+Personal portfolio website built with Vite + React + TypeScript.
+Deployed on GitHub Pages with a custom domain.
 
 ---
 
-## 📸 Section Breakdowns
+## Stack
 
-### 1. Hero & Monogram Navigation
-![Hero Section](./hero.png)
-
-### 2. Things Built (Projects Grid)
-![Projects Section](./projects.png)
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-The application is built entirely on a modern static React structure:
-
-*   **Framework**: [React 19 (TypeScript)](https://react.dev/)
-*   **Build Tooling**: [Vite 8 & Rollup](https://vite.dev/)
-*   **Styling**: Vanilla CSS (design tokens defined inside [src/styles/tokens.css](./src/styles/tokens.css))
-*   **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
-*   **Icons**: Custom inline SVG React components consolidated in [src/components/ui/icons.tsx](./src/components/ui/icons.tsx)
-*   **Asset Loading**: Dynamic loaders utilizing Vite's `import.meta.glob` helper inside [src/utils/images.ts](./src/utils/images.ts)
+| Layer       | Technology                                  |
+|-------------|---------------------------------------------|
+| Framework   | React 18 + TypeScript                       |
+| Build       | Vite                                        |
+| Animation   | Framer Motion                               |
+| Styling     | Plain CSS with CSS custom properties        |
+| Icons       | Lucide React                                |
+| Testing     | Playwright (via test-portfolio.cjs)         |
+| Deploy      | GitHub Pages · GitHub Actions               |
+| Domain      | aneesh.codes (name.com)                     |
 
 ---
 
-## ⚙️ Performance & Security Hardening
+## Sections
 
-*   **Rollup Code Splitting**: Optimized Rollup chunks in `vite.config.ts` isolate heavy libraries (`react`, `framer-motion`, `lucide-react`) into standalone cacheable vendor assets. This keeps the primary JS bundle size **under 64KB**.
-*   **Strict Content Security Policy (CSP)**: Hardened `<meta>` CSP header inside `index.html` blocks third-party script injection and strictly limits resource loading to trusted endpoints (e.g. EmailJS, Plausible, and jogruber's GitHub API).
-*   **Dynamic Font Preloading**: Asynchronously preloads Google Fonts (Playfair Display and DM Sans) using `<link rel="preload">` to eliminate Layout Shifts (CLS) and avoid render-blocking delays.
+- **Hero** — Animated photo blend, typewriter greeting, role badges, watermark
+- **About** — Bio, stats, GitHub contribution heatmap
+- **Technical Toolkit** — Skills grouped by category
+- **Method** — Approach and philosophy
+- **Certifications** — Infinite marquee of verified credentials
+- **Projects** — Featured + standard grid with expand/collapse, GitHub redirect card
+- **Experience** — Education and achievement timeline (NIT Warangal + DPS Doha)
+- **FAQ** — Accordion
+- **Contact** — EmailJS form, marquee footer
 
 ---
 
-## 🚀 Development & Local Commands
+## Local Development
 
-To start the local environment and verify compile/test integrity:
-
-### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/AneeshVRao/portfolio.git
-cd portfolio
 npm install
+npm run dev        # http://localhost:5173
+npm run build      # production build → /dist
+npm run preview    # preview production build
 ```
 
-### 2. Start Development Server
-```bash
-npm run dev
-```
+---
 
-### 3. Build Production Bundle
-```bash
-npm run build
-```
+## Testing
 
-### 4. Code Quality & Format Linter
 ```bash
-npm run lint
-```
-
-### 5. Automated E2E Verification
-Run the Playwright test suite to simulate navigation, project drawer toggles, FAQ accordions, and form validations:
-```bash
+# Start dev server first, then:
 node test-portfolio.cjs
 ```
 
-### 6. Automated Git Hooks & Local Rules
-This repository configures automated guards and development guidelines locally:
-*   **Pre-commit hook**: Runs a local credentials scanner (`scripts/scan-credentials.cjs`) to prevent hardcoded EmailJS or Bearer keys from being committed outside environment variables.
-*   **Pre-push hook**: Automatically lints, builds, spins up a temporary preview server, runs the full Playwright E2E suite (generating responsive layout screenshots), and shuts it down before allowing the push to complete.
-*   **Local AI Conventions**: Guidelines at `.claude/rules/portfolio-conventions.md` instruct coding assistants to enforce Vanilla CSS token usage (no Tailwind), centralized icon registration, and section background alternating rules.
+Playwright tests verify:
+- Page title and navbar
+- Hero section content
+- About stats
+- Projects expand/collapse (4 → 12 → 4)
+- FAQ accordion
+- Contact form submission
 
 ---
 
-## 🚀 Automated Deployment Pipeline
+## Deployment
 
-The codebase includes a GitHub Actions CI/CD deployment workflow inside `.github/workflows/deploy.yml` that:
-1.  Validates code style and TypeScript compiler constraints (`npm run lint`).
-2.  Compiles the production static assets (`npm run build`).
-3.  Copies the custom `CNAME` file from `public/` into the `dist/` directory automatically.
-4.  Deploys the static assets directly to GitHub Pages using secure token permissions (`pages: write`, `id-token: write`).
-5.  Serves the site under the custom domain [https://aneesh.codes/](https://aneesh.codes/).
+Push to `main` → GitHub Actions builds → deploys to `gh-pages` branch →
+GitHub Pages serves at `aneesh.codes`.
+
+```
+main branch  →  npm run build  →  gh-pages branch  →  aneesh.codes
+```
+
+Environment variables required (add as GitHub Actions secrets):
+```
+VITE_EMAILJS_SERVICE_ID
+VITE_EMAILJS_TEMPLATE_ID
+VITE_EMAILJS_PUBLIC_KEY
+```
+
+---
+
+## Project Structure
+
+```
+src/
+  components/     # One file per section + ui/ sub-folder for primitives
+  data/           # All content lives here — edit data files, not components
+  styles/         # tokens.css (design tokens) + global.css
+  assets/         # Images, icons
+public/           # Static files: CNAME, og-image, resume, robots.txt, sitemap
+.github/
+  workflows/
+    deploy.yml    # Build + deploy to gh-pages on push to main
+```
+
+**To add a project:** edit `src/data/projects.ts` only — copy the template at the bottom.
+**To update skills:** edit `src/data/skills.ts` only.
+**To change colours:** edit `src/styles/tokens.css` only.
+
+---
+
+## License
+
+MIT

@@ -4,9 +4,9 @@ import { GithubIcon } from './icons'
 import { getImageUrl } from '../../utils/images'
 
 const STATUS_LABELS = {
-  'shipped':     { label: 'Shipped',      color: '#1a7a6a', bg: 'rgba(26,122,106,0.10)' },
-  'in-progress': { label: 'In Progress',  color: '#c0520a', bg: 'rgba(192,82,10,0.10)'  },
-  'archived':    { label: 'Archived',     color: '#888',    bg: 'rgba(0,0,0,0.06)'       },
+  'shipped':     { label: 'Shipped',      color: 'var(--icon-teal)', bg: 'var(--icon-teal-bg)' },
+  'in-progress': { label: 'In Progress',  color: 'var(--accent)',    bg: 'var(--accent-light)'  },
+  'archived':    { label: 'Archived',     color: 'var(--text-muted)', bg: 'var(--bg-ghost-hover)' },
 }
 
 interface Props {

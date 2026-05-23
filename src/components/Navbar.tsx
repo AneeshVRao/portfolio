@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Sun, Moon } from 'lucide-react'
+import safeStorage from '../utils/storage'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -10,12 +11,8 @@ export default function Navbar() {
 
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('theme')
-        if (saved) return saved === 'dark'
-      } catch (e) {
-        console.warn('localStorage is disabled:', e)
-      }
+      const saved = safeStorage.get('theme')
+      if (saved) return saved === 'dark'
       return window.matchMedia('(prefers-color-scheme: dark)').matches
     }
     return true
@@ -25,18 +22,10 @@ export default function Navbar() {
     const root = document.documentElement
     if (isDark) {
       root.setAttribute('data-theme', 'dark')
-      try {
-        localStorage.setItem('theme', 'dark')
-      } catch (e) {
-        console.warn('localStorage is disabled:', e)
-      }
+      safeStorage.set('theme', 'dark')
     } else {
       root.setAttribute('data-theme', 'light')
-      try {
-        localStorage.setItem('theme', 'light')
-      } catch (e) {
-        console.warn('localStorage is disabled:', e)
-      }
+      safeStorage.set('theme', 'light')
     }
   }, [isDark])
 

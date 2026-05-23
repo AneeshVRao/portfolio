@@ -16,21 +16,26 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined
+    let handleLoadTimeoutId: ReturnType<typeof setTimeout> | undefined
+
     // Hide curtain after load event, or fallback to a timeout of 1.4s
     const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 500)
+      handleLoadTimeoutId = setTimeout(() => setIsLoading(false), 500)
     }
 
     if (document.readyState === 'complete') {
-      setTimeout(() => setIsLoading(false), 1200)
+      timeoutId = setTimeout(() => setIsLoading(false), 1200)
     } else {
       window.addEventListener('load', handleLoad)
       // Fallback timeout
-      const timeout = setTimeout(() => setIsLoading(false), 1500)
-      return () => {
-        window.removeEventListener('load', handleLoad)
-        clearTimeout(timeout)
-      }
+      timeoutId = setTimeout(() => setIsLoading(false), 1500)
+    }
+
+    return () => {
+      window.removeEventListener('load', handleLoad)
+      if (timeoutId) clearTimeout(timeoutId)
+      if (handleLoadTimeoutId) clearTimeout(handleLoadTimeoutId)
     }
   }, [])
 

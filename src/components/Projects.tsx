@@ -183,11 +183,14 @@ export default function Projects() {
                 <X size={18} />
               </button>
 
-              {selectedProject.image && (
+               {selectedProject.image && (
                 <div className="project-modal__image-wrap">
                   <img
                     src={getImageUrl(selectedProject.image)}
                     alt={selectedProject.title}
+                    width={800}
+                    height={450}
+                    loading="lazy"
                   />
                 </div>
               )}
@@ -195,8 +198,8 @@ export default function Projects() {
               <div className="project-modal__body">
                 <div className="project-modal__meta">
                   <span className="project-status-pill" style={{
-                    color: selectedProject.status === 'shipped' ? '#1a7a6a' : selectedProject.status === 'in-progress' ? '#c0520a' : '#888',
-                    background: selectedProject.status === 'shipped' ? 'rgba(26,122,106,0.1)' : selectedProject.status === 'in-progress' ? 'rgba(192,82,10,0.1)' : 'rgba(0,0,0,0.06)'
+                    color: selectedProject.status === 'shipped' ? 'var(--icon-teal)' : selectedProject.status === 'in-progress' ? 'var(--accent)' : 'var(--text-muted)',
+                    background: selectedProject.status === 'shipped' ? 'var(--icon-teal-bg)' : selectedProject.status === 'in-progress' ? 'var(--accent-light)' : 'var(--bg-ghost-hover)'
                   }}>
                     {selectedProject.status === 'shipped' ? 'Shipped' : selectedProject.status === 'in-progress' ? 'In Progress' : 'Archived'}
                   </span>

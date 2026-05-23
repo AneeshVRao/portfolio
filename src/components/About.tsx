@@ -225,7 +225,6 @@ export default function About() {
                   width: '100%', 
                   textAlign: 'left',
                   border: isExpanded ? '1px solid var(--accent)' : '1px solid var(--border)',
-                  outline: 'none',
                   display: 'block'
                 }}
                 aria-expanded={isExpanded}

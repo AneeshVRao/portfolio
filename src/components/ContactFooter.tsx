@@ -84,7 +84,7 @@ export default function ContactFooter() {
       <div className="marquee-banner">
         <div className="marquee-track">
           {[...Array(2)].map((_, i) => (
-            <span key={i} className="marquee-text" aria-hidden={i === 1}>
+            <span key={i} className="marquee-text" aria-hidden="true">
               {'Contact Me · '.repeat(10)}
             </span>
           ))}
