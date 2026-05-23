@@ -2,66 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      (function() {
-        let saved = null;
-        try {
-          saved = localStorage.getItem('theme');
-        } catch (e) {
-          // ignore localStorage access error
-        }
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'dark' || (!saved && prefersDark)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-        }
-      })();
-    </script>
-
-    <!-- Plausible Analytics -->
-    <script defer data-domain="aneesh.codes" src="https://plausible.io/js/script.js"></script>
-
-    <!-- Font Preloading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" />
-
     <title>Aneesh Venkatesha Rao — Portfolio</title>
-    
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Aneesh Venkatesha Rao — Full-Stack & AI Engineer" />
-    <meta name="description" content="Building AI-powered products, scalable systems, and open-source tools." />
-    <meta name="keywords" content="Aneesh Venkatesha Rao, AI Systems Builder, Full-Stack Engineer, Machine Learning, Portfolio, React, TypeScript" />
-    <meta name="author" content="Aneesh Venkatesha Rao" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title"       content="Aneesh Venkatesha Rao — Full-Stack & AI Engineer" />
-    <meta property="og:description" content="Building AI-powered products, scalable systems, and open-source tools." />
-    <meta property="og:image"       content="https://aneesh.codes/og-image.jpg" />
-    <meta property="og:url"         content="https://aneesh.codes/" />
-    <meta property="og:type"        content="website" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card"       content="summary_large_image" />
-    <meta name="twitter:url"         content="https://aneesh.codes/" />
-    <meta name="twitter:title"       content="Aneesh Venkatesha Rao — Full-Stack & AI Engineer" />
-    <meta name="twitter:description" content="Building AI-powered products, scalable systems, and open-source tools." />
-    <meta name="twitter:image"       content="https://aneesh.codes/og-image.jpg" />
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" onload="this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap">
-    </noscript>
-
-    <script type="module" crossorigin src="/assets/index-D6EndLXh.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Cyuzqnbw.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-motion-C2x-glp9.js">
-    <link rel="modulepreload" crossorigin href="/assets/vendor-react-B0qpcKde.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-CduaDQ9X.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/portfolio/assets/index-B-P2WEdV.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-CBufID9Y.css">
   </head>
   <body>
     <div id="root"></div>
