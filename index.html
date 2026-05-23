@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
     <title>Aneesh Venkatesha Rao — Portfolio</title>
     
     <!-- Primary Meta Tags -->
@@ -30,8 +42,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
-    <script type="module" crossorigin src="/portfolio/assets/index-BMS7U6OI.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-ChSSYclN.css">
+    <script type="module" crossorigin src="/portfolio/assets/index-jqr-G8Cv.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-DHxbukG9.css">
   </head>
   <body>
     <div id="root"></div>
