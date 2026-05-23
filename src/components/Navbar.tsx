@@ -34,13 +34,14 @@ export default function Navbar() {
       setScrolled(!isTop)
 
       // Section theme mapping
-      const sections = ['hero', 'about', 'toolkit', 'method', 'projects', 'faq', 'contact']
+      const sections = ['hero', 'about', 'toolkit', 'method', 'projects', 'certifications', 'faq', 'contact']
       const sectionThemes: Record<string, 'dark' | 'light' | 'beige'> = {
         hero: 'dark',
         about: 'beige',
         toolkit: 'light',
         method: 'beige',
         projects: 'light',
+        certifications: 'light',
         faq: 'beige',
         contact: 'dark',
       }

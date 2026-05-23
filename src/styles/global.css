@@ -1413,5 +1413,121 @@ button, .cta-button {
   }
 }
 
+/* ── Certifications Section ────────────────── */
+.certifications {
+  padding: 100px 0;
+  background-color: var(--bg-white);
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.certifications-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  padding: 10px 0;
+}
+
+.certifications-marquee::before,
+.certifications-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.certifications-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-white) 0%, transparent 100%);
+}
+
+.certifications-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-white) 0%, transparent 100%);
+}
+
+.certifications-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.certifications-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  white-space: nowrap;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certifications-badge:hover {
+  border-color: var(--accent-light);
+  box-shadow: 0 6px 16px rgba(192, 82, 10, 0.05);
+}
+
+.cert-badge__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.cert-badge__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cert-badge__title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cert-badge__issuer {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.cert-badge__link {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cert-badge__link:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+
 
 

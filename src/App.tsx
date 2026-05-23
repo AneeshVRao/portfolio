@@ -7,6 +7,7 @@ import About from './components/About'
 import TechnicalToolkit from './components/TechnicalToolkit'
 import Method from './components/Method'
 import Projects from './components/Projects'
+import Certifications from './components/Certifications'
 import FAQ from './components/FAQ'
 import ContactFooter from './components/ContactFooter'
 
@@ -43,6 +44,7 @@ function App() {
       <TechnicalToolkit />
       <Method />
       <Projects />
+      <Certifications />
       <FAQ />
       <ContactFooter />
     </>
