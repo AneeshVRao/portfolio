@@ -39,10 +39,10 @@ The application is built entirely on a modern static React structure:
 
 *   **Framework**: [React 19 (TypeScript)](https://react.dev/)
 *   **Build Tooling**: [Vite 8 & Rollup](https://vite.dev/)
-*   **Styling**: Vanilla CSS (design tokens defined inside [src/styles/tokens.css](file:///d:/Projects/ML/portfolio/src/styles/tokens.css))
+*   **Styling**: Vanilla CSS (design tokens defined inside [src/styles/tokens.css](./src/styles/tokens.css))
 *   **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
-*   **Icons**: Custom inline SVG React components consolidated in [src/components/ui/icons.tsx](file:///d:/Projects/ML/portfolio/src/components/ui/icons.tsx)
-*   **Asset Loading**: Dynamic loaders utilizing Vite's `import.meta.glob` helper inside [src/utils/images.ts](file:///d:/Projects/ML/portfolio/src/utils/images.ts)
+*   **Icons**: Custom inline SVG React components consolidated in [src/components/ui/icons.tsx](./src/components/ui/icons.tsx)
+*   **Asset Loading**: Dynamic loaders utilizing Vite's `import.meta.glob` helper inside [src/utils/images.ts](./src/utils/images.ts)
 
 ---
 
@@ -85,6 +85,12 @@ Run the Playwright test suite to simulate navigation, project drawer toggles, FA
 ```bash
 node test-portfolio.cjs
 ```
+
+### 6. Automated Git Hooks & Local Rules
+This repository configures automated guards and development guidelines locally:
+*   **Pre-commit hook**: Runs a local credentials scanner (`scripts/scan-credentials.cjs`) to prevent hardcoded EmailJS or Bearer keys from being committed outside environment variables.
+*   **Pre-push hook**: Automatically lints, builds, spins up a temporary preview server, runs the full Playwright E2E suite (generating responsive layout screenshots), and shuts it down before allowing the push to complete.
+*   **Local AI Conventions**: Guidelines at `.claude/rules/portfolio-conventions.md` instruct coding assistants to enforce Vanilla CSS token usage (no Tailwind), centralized icon registration, and section background alternating rules.
 
 ---
 

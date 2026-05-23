@@ -35,9 +35,6 @@ ehthumbs.db
 Icon?
 
 # Local test outputs and artifacts
-fullpage.png
-hero.png
-projects.png
 take_screenshots.cjs
 test-portfolio.cjs
 test-results/
