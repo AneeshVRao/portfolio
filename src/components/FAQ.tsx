@@ -13,7 +13,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
+    <section id="faq" aria-label="Frequently Asked Questions" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
       <div className="container">
         <div className="faq-grid">
           {/* Left Column: Heading + Call to Action */}
@@ -40,9 +40,11 @@ export default function FAQ() {
                 <FadeUp key={faq.id} delay={index * 0.08}>
                   <div className="faq-item">
                     <button 
+                      id={`faq-btn-${faq.id}`}
                       className="faq-item__header" 
                       onClick={() => toggleFAQ(faq.id)}
                       aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${faq.id}`}
                     >
                       <span>{faq.q}</span>
                       <span className="faq-item__icon" style={{
@@ -57,6 +59,9 @@ export default function FAQ() {
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
+                          id={`faq-panel-${faq.id}`}
+                          role="region"
+                          aria-labelledby={`faq-btn-${faq.id}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}

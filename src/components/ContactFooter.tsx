@@ -96,7 +96,7 @@ export default function ContactFooter() {
 
 
   return (
-    <footer id="contact" style={{ width: '100%' }}>
+    <footer id="contact" aria-label="Contact and Footer Links" style={{ width: '100%' }}>
       {/* Marquee Banner */}
       <div className="marquee-banner">
         <div className="marquee-track">
@@ -133,7 +133,7 @@ export default function ContactFooter() {
 
             {/* Column 3: CTA + Form */}
             <FadeUp delay={0.1}>
-              <h3 className="footer-col__headline">Ready to Build Something Together?</h3>
+              <h3 className="footer-col__headline">Want to build something together?</h3>
               <form onSubmit={handleSubmit} className="footer-form">
                 <input 
                   type="email" 
@@ -171,7 +171,7 @@ export default function ContactFooter() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="footer-social-link"
-                aria-label="LinkedIn Profile"
+                aria-label="LinkedIn Profile (opens in a new tab)"
               >
                 <LinkedinIcon size={16} />
               </a>
@@ -180,7 +180,7 @@ export default function ContactFooter() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="footer-social-link"
-                aria-label="GitHub Profile"
+                aria-label="GitHub Profile (opens in a new tab)"
               >
                 <GithubIcon size={16} />
               </a>

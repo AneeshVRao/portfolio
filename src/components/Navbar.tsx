@@ -9,8 +9,12 @@ export default function Navbar() {
 
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme')
-      if (saved) return saved === 'dark'
+      try {
+        const saved = localStorage.getItem('theme')
+        if (saved) return saved === 'dark'
+      } catch (e) {
+        console.warn('localStorage is disabled:', e)
+      }
       return window.matchMedia('(prefers-color-scheme: dark)').matches
     }
     return true
@@ -20,10 +24,18 @@ export default function Navbar() {
     const root = document.documentElement
     if (isDark) {
       root.setAttribute('data-theme', 'dark')
-      localStorage.setItem('theme', 'dark')
+      try {
+        localStorage.setItem('theme', 'dark')
+      } catch (e) {
+        console.warn('localStorage is disabled:', e)
+      }
     } else {
       root.setAttribute('data-theme', 'light')
-      localStorage.setItem('theme', 'light')
+      try {
+        localStorage.setItem('theme', 'light')
+      } catch (e) {
+        console.warn('localStorage is disabled:', e)
+      }
     }
   }, [isDark])
 
@@ -76,7 +88,10 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className={`navbar ${scrolled || menuActive ? 'navbar--scrolled' : ''} ${scrolled || menuActive ? `navbar--theme-${theme}` : ''}`}>
+    <nav 
+      className={`navbar ${scrolled || menuActive ? 'navbar--scrolled' : ''} ${scrolled || menuActive ? `navbar--theme-${theme}` : ''}`}
+      aria-label="Main Navigation"
+    >
       <div className="container" style={{ position: 'relative' }}>
         <a href="#hero" className="navbar__logo">AVR</a>
 
@@ -105,8 +120,8 @@ export default function Navbar() {
         <div className={`navbar__menu ${menuActive ? 'navbar__menu--active' : ''}`}>
           <a href="#about" className="navbar__link" onClick={() => setMenuActive(false)}>About</a>
           <a href="#toolkit" className="navbar__link" onClick={() => setMenuActive(false)}>Toolkit</a>
-          <a href="#method" className="navbar__link" onClick={() => setMenuActive(false)}>Method</a>
           <a href="#projects" className="navbar__link" onClick={() => setMenuActive(false)}>Projects</a>
+          <a href="#certifications" className="navbar__link" onClick={() => setMenuActive(false)}>Certifications</a>
           <a href="#faq" className="navbar__link" onClick={() => setMenuActive(false)}>FAQ</a>
           <a 
             href={`${import.meta.env.BASE_URL}resume.pdf`} 
@@ -115,6 +130,7 @@ export default function Navbar() {
             className="navbar__cta"
             onClick={() => setMenuActive(false)}
             style={{ marginBottom: menuActive ? '10px' : '0' }}
+            aria-label="View Resume PDF (opens in a new tab)"
           >
             Resume
           </a>
@@ -130,12 +146,11 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Scroll Progress Bar Indicator (placed outside container to span full width and offset downwards) */}
       <div 
         className="navbar-progress-bar"
         style={{
           position: 'absolute',
-          bottom: scrolled || menuActive ? '-3px' : '-20px',
+          bottom: scrolled || menuActive ? '0px' : '-20px',
           left: 0,
           height: '3px',
           width: `${scrollProgress}%`,

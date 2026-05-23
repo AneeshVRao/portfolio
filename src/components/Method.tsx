@@ -9,7 +9,7 @@ const getImageUrl = (imagePath: string) => {
 
 export default function Method() {
   return (
-    <section id="method" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
+    <section id="method" aria-label="Core Engineering Methodology" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
       <div className="container">
         {/* Top Header Grid */}
         <div className="method-grid-top">
@@ -33,6 +33,9 @@ export default function Method() {
                   src={getImageUrl(step.image)} 
                   alt={step.title} 
                   className="method-card__image"
+                  loading="lazy"
+                  width={400}
+                  height={220}
                 />
                 <div className="method-card__body">
                   <div className="method-card__num">{step.num}</div>

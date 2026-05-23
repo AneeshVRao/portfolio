@@ -18,14 +18,15 @@ export interface AboutData {
 export const aboutData: AboutData = {
   eyebrow: 'About',
   headline: [
-    { text: "As a full-stack engineer and AI builder, I've helped " },
-    { text: '20+ teams', bold: true },
-    { text: ' ship production-grade products, cut dev cycles, and build systems that outlast the sprint.' },
+    { text: "I'm an " },
+    { text: "ECE student at NIT Warangal", bold: true },
+    { text: " who builds things that are probably too ambitious for my year. I like the intersection of " },
+    { text: "AI systems and hardware", bold: true },
+    { text: " — you'll find Verilog and Go in the same repo list as TypeScript and Python. Currently exploring what LLM tooling looks like when you build it from the protocol layer up." }
   ],
   stats: [
-    { value: '20+',  numericValue: 20,    label: 'Projects Shipped'   },
-    { value: '8+',   numericValue: 8,     label: 'Years Building'      },
-    { value: '15K+', numericValue: 15000, label: 'GitHub Stars'        },
-    { value: '10+',  numericValue: 10,    label: 'Open Source Tools'   },
+    { value: '30+',  numericValue: 30,  label: 'Repositories Built'     },
+    { value: '10+',  numericValue: 10,  label: 'Certifications Earned'  },
+    { value: '4+',   numericValue: 4,   label: 'Years of Consistent Coding' },
   ],
 }

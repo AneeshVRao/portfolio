@@ -14,8 +14,8 @@ async function runTests() {
 
   try {
     // 1. Navigate to the local server
-    console.log('Navigating to http://localhost:5173/portfolio/ ...');
-    await page.goto('http://localhost:5173/portfolio/', { waitUntil: 'networkidle' });
+    console.log('Navigating to http://localhost:5173/ ...');
+    await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
 
     // 2. Validate Page Title
     const title = await page.title();
@@ -38,11 +38,11 @@ async function runTests() {
     console.log('Checking Hero Section...');
     // Wait for the typewriter greeting to start typing after the curtain slides up
     await page.waitForFunction(() => {
-      const text = document.querySelector('.hero-greeting p:first-child')?.textContent || '';
+      const text = document.querySelector('.hero-greeting *:first-child')?.textContent || '';
       return text.includes("Hi");
     }, { timeout: 6000 });
     
-    const greetingText = await page.textContent('.hero-greeting p:first-child');
+    const greetingText = await page.textContent('.hero-greeting *:first-child');
     console.log(`✅ Hero greeting text: "${greetingText}"`);
     if (!greetingText.trim().startsWith("Hi")) throw new Error('Hero greeting is wrong!');
 

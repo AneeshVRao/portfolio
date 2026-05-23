@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import heroPhoto from '../assets/images/hero-photo.jpg'
 
 const roles = [
-  { num: '01', label: 'Full-Stack Engineer',       active: false },
-  { num: '02', label: 'AI Systems Builder',         active: true  },
-  { num: '03', label: 'Open Source Contributor',    active: false },
+  { num: '01', label: 'ECE @ NIT Warangal',          active: true },
+  { num: '02', label: 'SIH 2025 Finalist',            active: false },
+  { num: '03', label: 'Building in public since 2023', active: false },
 ]
+
+const phrase = "Hi, I'm Aneesh"
 
 export default function Hero() {
   const [typedText, setTypedText] = useState('')
   const [startTyping, setStartTyping] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
-  const phrase = "Hi, I'm Aneesh"
+
+  const { scrollY } = useScroll()
+  // Translate from -50% (initial center) downwards by scroll offset to create parallax depth
+  const translateY = useTransform(scrollY, [0, 1000], ['-50%', '-30%'])
 
   useEffect(() => {
     // Delay start of typing until after page load curtain slides up
@@ -37,16 +42,21 @@ export default function Hero() {
   }, [startTyping, typedText])
 
   return (
-    <section id="hero" className="hero">
-      {/* Blended Background Photo — cinematic scale-in */}
+    <section id="hero" className="hero" aria-label="Introduction and Summary">
+      {/* Blended Background Photo — cinematic scale-in with parallax scroll */}
       <motion.img
         src={heroPhoto}
         className="hero-photo"
         alt="Aneesh Venkatesha Rao"
-        initial={{ opacity: 0, scale: 1.35, x: '-50%', y: '-50%' }}
-        animate={{ opacity: 0.9, scale: 1.2, x: '-50%', y: '-50%' }}
+        initial={{ opacity: 0, scale: 1.35, x: '-50%' }}
+        animate={{ opacity: 0.9, scale: 1.2, x: '-50%' }}
+        style={{ y: translateY }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+        fetchPriority="high"
       />
+
+      {/* Cinematic Film Grain Overlay */}
+      <div className="hero-overlay-grain" />
 
       {/* Gradient Color Overlay */}
       <motion.div
@@ -57,7 +67,7 @@ export default function Hero() {
       />
 
       {/* Background Watermark — staggered slide-in */}
-      <div className="hero-watermark">
+      <div className="hero-watermark" aria-hidden="true">
         <motion.span
           className="hero-watermark-row"
           initial={{ opacity: 0, x: -120 }}
@@ -84,13 +94,14 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="hero-greeting">
-          <p style={{ fontFamily: 'var(--font-script)', fontSize: 22, color: '#fff', marginBottom: 8, minHeight: '32px', display: 'flex', alignItems: 'center' }}>
+          <h1 style={{ fontFamily: 'var(--font-script)', fontSize: '22px', fontWeight: 'bold', color: '#fff', marginBottom: 8, minHeight: '32px', display: 'flex', alignItems: 'center' }}>
+            {typedText === '' && <span className="sr-only">Hi, I'm Aneesh</span>}
             {typedText}
             {showCursor && <span className="typewriter-cursor">|</span>}
-          </p>
+          </h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>
-            Building AI-powered products, scalable systems,
-            and open-source tools that ship fast and last.
+            ECE sophomore at NIT Warangal. Building Go load balancers,
+            Verilog cores, and AI tools that actually ship.
           </p>
         </div>
 

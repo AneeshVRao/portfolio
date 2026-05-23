@@ -27,6 +27,7 @@ const STATUS_LABELS = {
 interface Props {
   project: Project
   variant: 'featured' | 'standard'
+  onClick?: () => void
 }
 
 // Dynamically import all images in assets/images using Vite's glob import
@@ -37,14 +38,24 @@ const getImageUrl = (imagePath: string) => {
   return projectImages[key]?.default || ''
 }
 
-export default function ProjectCard({ project, variant }: Props) {
+export default function ProjectCard({ project, variant, onClick }: Props) {
   const status = STATUS_LABELS[project.status]
 
   return (
-    <article className={`project-card project-card--${variant}`}>
+    <article 
+      className={`project-card project-card--${variant}`}
+      onClick={onClick}
+      style={{ cursor: onClick ? 'pointer' : 'default' }}
+    >
       {project.image && (
         <div className="project-card__image-wrap">
-          <img src={getImageUrl(project.image)} alt={project.title} />
+          <img 
+            src={getImageUrl(project.image)} 
+            alt={project.title} 
+            loading="lazy"
+            width={600}
+            height={338}
+          />
         </div>
       )}
       <div className="project-card__body">
@@ -55,18 +66,32 @@ export default function ProjectCard({ project, variant }: Props) {
           <span className="project-year">{project.year}</span>
         </div>
         <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__tagline">{project.description}</p>
+        <p className="project-card__tagline">{project.tagline}</p>
         <div className="project-card__tags">
           {project.tags.map(t => <span key={t} className="project-tag">{t}</span>)}
         </div>
         <div className="project-card__actions">
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-btn project-btn--primary">
+            <a 
+              href={project.liveUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="project-btn project-btn--primary"
+              aria-label={`View live demo of ${project.title} (opens in a new tab)`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <ExternalLink size={14} /> Live
             </a>
           )}
           {project.repoUrl && (
-            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="project-btn project-btn--ghost">
+            <a 
+              href={project.repoUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="project-btn project-btn--ghost"
+              aria-label={`View ${project.title} source code on GitHub (opens in a new tab)`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <GithubIcon size={14} /> GitHub
             </a>
           )}

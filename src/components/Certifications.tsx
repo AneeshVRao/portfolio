@@ -1,5 +1,7 @@
 import { certifications } from '../data/certifications'
 import { Award, Cloud, Cpu, Terminal, BookOpen, Trophy, Medal } from 'lucide-react'
+import FadeUp from './ui/FadeUp'
+import SectionEyebrow from './ui/SectionEyebrow'
 
 const getIssuerIcon = (issuer: string) => {
   const lowercaseIssuer = issuer.toLowerCase();
@@ -73,12 +75,15 @@ export default function Certifications() {
   const duplicatedList = [...certifications, ...certifications, ...certifications]
 
   return (
-    <section id="certifications" className="certifications">
+    <section id="certifications" className="certifications" aria-label="Certifications and Credentials">
       <div className="container">
-        <h2 className="section-title text-center">Certifications & Credentials</h2>
-        <p className="section-sub text-center" style={{ margin: '0 auto 32px' }}>
-          Verified credentials and achievements in product engineering, UX design, and quantitative problem solving.
-        </p>
+        <FadeUp>
+          <SectionEyebrow>Credentials</SectionEyebrow>
+          <h2 className="section-heading">Certifications & Achievements</h2>
+          <p className="section-sub">
+            Verified credentials and achievements in product engineering, UX design, and quantitative problem solving.
+          </p>
+        </FadeUp>
       </div>
 
       <div className="certifications-marquee">
@@ -91,6 +96,8 @@ export default function Certifications() {
                   alt={c.title} 
                   className="cert-card__image"
                   loading="lazy"
+                  width={220}
+                  height={110}
                 />
               </div>
               <div className="cert-card__body">
@@ -121,6 +128,7 @@ export default function Certifications() {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="cert-card__link-btn"
+                    aria-label={`Verify credential for ${c.title} (opens in a new tab)`}
                   >
                     Verify Credential
                   </a>

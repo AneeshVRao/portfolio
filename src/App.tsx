@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import TechnicalToolkit from './components/TechnicalToolkit'
+import Experience from './components/Experience'
 import Method from './components/Method'
 import Projects from './components/Projects'
 import Certifications from './components/Certifications'
@@ -33,19 +34,41 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const hero = document.getElementById('hero')
+      const contact = document.getElementById('contact')
+      if (hero) {
+        const rect = hero.getBoundingClientRect()
+        hero.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
+        hero.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+      }
+      if (contact) {
+        const rect = contact.getBoundingClientRect()
+        contact.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
+        contact.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+      }
+    }
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
     <>
       <AnimatePresence mode="wait">
         {isLoading && <PageCurtain />}
       </AnimatePresence>
       <Navbar />
-      <Hero />
-      <About />
-      <TechnicalToolkit />
-      <Method />
-      <Projects />
-      <Certifications />
-      <FAQ />
+      <main>
+        <Hero />
+        <About />
+        <TechnicalToolkit />
+        <Experience />
+        <Method />
+        <Projects />
+        <Certifications />
+        <FAQ />
+      </main>
       <ContactFooter />
     </>
   )
