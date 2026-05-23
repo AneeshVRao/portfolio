@@ -20,13 +20,9 @@ export const skills: Skill[] = [
   { id: 'typescript',      name: 'TypeScript',            category: 'Programming Languages',   featured: true  },
   { id: 'javascript',      name: 'JavaScript',            category: 'Programming Languages'                    },
   { id: 'cpp',             name: 'C/C++',                 category: 'Programming Languages'                    },
-  { id: 'rust',            name: 'Rust',                  category: 'Programming Languages',   featured: true  },
   { id: 'bash',            name: 'Bash',                  category: 'Programming Languages',   featured: true  },
   { id: 'java',            name: 'Java',                  category: 'Programming Languages'                    },
-  { id: 'csharp',          name: 'C#',                    category: 'Programming Languages'                    },
   { id: 'sql',             name: 'SQL',                   category: 'Programming Languages'                    },
-  { id: 'r-lang',          name: 'R',                     category: 'Programming Languages'                    },
-  { id: 'scala',           name: 'Scala',                 category: 'Programming Languages'                    },
   { id: 'kotlin',          name: 'Kotlin',                category: 'Programming Languages'                    },
   { id: 'matlab',          name: 'MATLAB',                category: 'Programming Languages'                    },
 
@@ -40,7 +36,6 @@ export const skills: Skill[] = [
   { id: 'tensorflow',      name: 'TensorFlow',            category: 'AI & Machine Learning'                    },
   { id: 'huggingface',     name: 'Hugging Face',          category: 'AI & Machine Learning'                    },
   { id: 'scikit-learn',    name: 'Scikit-learn',          category: 'AI & Machine Learning'                    },
-  { id: 'keras',           name: 'Keras',                 category: 'AI & Machine Learning'                    },
   { id: 'opencv',          name: 'OpenCV',                category: 'AI & Machine Learning'                    },
   { id: 'whisper',         name: 'Whisper',               category: 'AI & Machine Learning'                    },
   { id: 'gemini-api',      name: 'Gemini API',            category: 'AI & Machine Learning'                    },
@@ -51,10 +46,8 @@ export const skills: Skill[] = [
   { id: 'fastapi',         name: 'FastAPI',               category: 'Backend & Databases',     featured: true  },
   { id: 'nodejs',          name: 'Node.js',               category: 'Backend & Databases'                      },
   { id: 'expressjs',       name: 'Express.js',            category: 'Backend & Databases'                      },
-  { id: 'django',          name: 'Django',                category: 'Backend & Databases'                      },
   { id: 'flask',           name: 'Flask',                 category: 'Backend & Databases'                      },
   { id: 'postgresql',      name: 'PostgreSQL',            category: 'Backend & Databases',     featured: true  },
-  { id: 'mysql',           name: 'MySQL',                 category: 'Backend & Databases'                      },
   { id: 'mongodb',         name: 'MongoDB',               category: 'Backend & Databases'                      },
   { id: 'firebase',        name: 'Firebase',              category: 'Backend & Databases'                      },
   { id: 'kafka',           name: 'Apache Kafka',          category: 'Backend & Databases'                      },
@@ -63,21 +56,11 @@ export const skills: Skill[] = [
 
   // Cloud, Infra & Tools
   { id: 'aws',             name: 'AWS',                   category: 'Cloud, Infra & Tools',    featured: true  },
-  { id: 'gcp',             name: 'GCP',                   category: 'Cloud, Infra & Tools'                     },
   { id: 'azure',           name: 'Azure',                 category: 'Cloud, Infra & Tools'                     },
   { id: 'docker',          name: 'Docker',                category: 'Cloud, Infra & Tools',    featured: true  },
-  { id: 'kubernetes',      name: 'Kubernetes',            category: 'Cloud, Infra & Tools',    featured: true  },
-  { id: 'terraform',       name: 'Terraform',             category: 'Cloud, Infra & Tools'                     },
   { id: 'git',             name: 'Git',                   category: 'Cloud, Infra & Tools'                     },
   { id: 'github',          name: 'GitHub',                category: 'Cloud, Infra & Tools'                     },
   { id: 'cicd',            name: 'CI/CD (GitHub Actions)',category: 'Cloud, Infra & Tools',    featured: true  },
-  { id: 'airflow',         name: 'Apache Airflow',        category: 'Cloud, Infra & Tools'                     },
-  { id: 'snowflake',       name: 'Snowflake',             category: 'Cloud, Infra & Tools'                     },
-  { id: 'databricks',      name: 'Databricks',            category: 'Cloud, Infra & Tools'                     },
-  { id: 'bigquery',        name: 'BigQuery',              category: 'Cloud, Infra & Tools'                     },
-  { id: 'nginx',           name: 'NGINX',                 category: 'Cloud, Infra & Tools'                     },
-  { id: 'prometheus',      name: 'Prometheus',            category: 'Cloud, Infra & Tools'                     },
-  { id: 'spark',           name: 'Apache Spark',          category: 'Cloud, Infra & Tools'                     },
 
   // Frontend & Design
   { id: 'nextjs',          name: 'Next.js',               category: 'Frontend & Design',       featured: true  },
@@ -88,8 +71,6 @@ export const skills: Skill[] = [
   { id: 'figma',           name: 'Figma',                 category: 'Frontend & Design'                        },
   { id: 'vercel',          name: 'Vercel',                category: 'Frontend & Design'                        },
   { id: 'railway',         name: 'Railway',               category: 'Frontend & Design'                        },
-  { id: 'tableau',         name: 'Tableau',               category: 'Frontend & Design'                        },
-  { id: 'powerbi',         name: 'Power BI',              category: 'Frontend & Design'                        },
 
   // Hardware & Systems
   { id: 'verilog',         name: 'Verilog',               category: 'Hardware & Systems',      featured: true  },

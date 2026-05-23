@@ -74,7 +74,11 @@ export default function Navbar() {
           }
         }
       }
-      setTheme(activeTheme)
+      
+      // If the overall page is in dark mode, force the navbar to dark theme.
+      // Otherwise, match the section theme (light/beige/dark).
+      const isPageDark = document.documentElement.getAttribute('data-theme') === 'dark'
+      setTheme(isPageDark ? 'dark' : activeTheme)
       setActiveSection(currentSection)
 
       // Scroll progress calculation
@@ -89,7 +93,7 @@ export default function Navbar() {
     handleScroll() // Run initial check
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isDark])
 
   return (
     <>
