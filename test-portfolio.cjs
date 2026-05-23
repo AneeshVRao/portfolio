@@ -55,9 +55,31 @@ async function runTests() {
 
     // 6. Validate Projects
     console.log('Checking Projects...');
-    const projectsCount = await page.locator('.project-card').count();
-    console.log(`✅ Number of project cards: ${projectsCount}`);
-    if (projectsCount < 2) throw new Error('Expected at least 2 project cards!');
+    const initialProjectsCount = await page.locator('.project-card').count();
+    console.log(`✅ Initial number of project cards (Featured): ${initialProjectsCount}`);
+    if (initialProjectsCount !== 4) {
+      throw new Error(`Expected exactly 4 featured project cards, got ${initialProjectsCount}`);
+    }
+
+    console.log('Clicking the "More Projects" button...');
+    await page.click('button:has-text("More Projects")');
+    await page.waitForTimeout(600); // Wait for expand animation
+
+    const expandedProjectsCount = await page.locator('.project-card').count();
+    console.log(`✅ Number of project cards after expanding: ${expandedProjectsCount}`);
+    if (expandedProjectsCount !== 12) {
+      throw new Error(`Expected exactly 12 project cards in total after expanding (11 projects + 1 GitHub card), got ${expandedProjectsCount}`);
+    }
+
+    console.log('Clicking the "Show Less" button...');
+    await page.click('button:has-text("Show Less")');
+    await page.waitForTimeout(600); // Wait for collapse animation
+
+    const collapsedProjectsCount = await page.locator('.project-card').count();
+    console.log(`✅ Number of project cards after collapsing again: ${collapsedProjectsCount}`);
+    if (collapsedProjectsCount !== 4) {
+      throw new Error(`Expected exactly 4 project cards after collapsing, got ${collapsedProjectsCount}`);
+    }
 
     // 7. Validate FAQ Accordion
     console.log('Checking FAQ Accordion...');

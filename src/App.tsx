@@ -1,11 +1,9 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
-import PainPoints from './components/PainPoints'
+import TechnicalToolkit from './components/TechnicalToolkit'
 import Method from './components/Method'
-import Skills from './components/Skills'
 import Projects from './components/Projects'
-import Testimonials from './components/Testimonials'
 import FAQ from './components/FAQ'
 import ContactFooter from './components/ContactFooter'
 
@@ -15,11 +13,9 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <PainPoints />
+      <TechnicalToolkit />
       <Method />
-      <Skills />
       <Projects />
-      <Testimonials />
       <FAQ />
       <ContactFooter />
     </>
@@ -27,3 +23,4 @@ function App() {
 }
 
 export default App
+

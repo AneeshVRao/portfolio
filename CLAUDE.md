@@ -183,5 +183,5 @@ GitHub Pages URL: `https://aneesh-venkatesha-rao.github.io/portfolio` (or custom
 ## Contact / Owner
 
 **Aneesh Venkatesha Rao**
-hello@aneeshrao.dev
-GitHub: github.com/aneesh-venkatesha-rao
+aneeshvrao2017@gmail.com
+GitHub: github.com/AneeshVRao

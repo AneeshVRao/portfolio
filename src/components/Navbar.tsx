@@ -2,23 +2,51 @@ import { useState, useEffect } from 'react'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [theme, setTheme] = useState<'dark' | 'light' | 'beige'>('dark')
   const [menuActive, setMenuActive] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
+      // Check if user scrolled down
+      const isTop = window.scrollY <= 40
+      setScrolled(!isTop)
+
+      // Section theme mapping
+      const sections = ['hero', 'about', 'toolkit', 'method', 'projects', 'faq', 'contact']
+      const sectionThemes: Record<string, 'dark' | 'light' | 'beige'> = {
+        hero: 'dark',
+        about: 'beige',
+        toolkit: 'light',
+        method: 'beige',
+        projects: 'light',
+        faq: 'beige',
+        contact: 'dark',
       }
+
+      let activeTheme: 'dark' | 'light' | 'beige' = 'dark'
+
+      for (const id of sections) {
+        const el = document.getElementById(id)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          // If the section top is above 32px (midpoint of navbar) and bottom is below 32px, it is active
+          if (rect.top <= 32 && rect.bottom > 32) {
+            activeTheme = sectionThemes[id]
+            break
+          }
+        }
+      }
+      setTheme(activeTheme)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Run initial check
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled || menuActive ? 'navbar--scrolled' : ''} ${scrolled || menuActive ? `navbar--theme-${theme}` : ''}`}>
       <div className="container">
         <a href="#hero" className="navbar__logo">AVR</a>
 
@@ -34,15 +62,18 @@ export default function Navbar() {
 
         <div className={`navbar__menu ${menuActive ? 'navbar__menu--active' : ''}`}>
           <a href="#about" className="navbar__link" onClick={() => setMenuActive(false)}>About</a>
+          <a href="#toolkit" className="navbar__link" onClick={() => setMenuActive(false)}>Toolkit</a>
+          <a href="#method" className="navbar__link" onClick={() => setMenuActive(false)}>Method</a>
           <a href="#projects" className="navbar__link" onClick={() => setMenuActive(false)}>Projects</a>
-          <a href="#skills" className="navbar__link" onClick={() => setMenuActive(false)}>Skills</a>
           <a href="#faq" className="navbar__link" onClick={() => setMenuActive(false)}>FAQ</a>
           <a 
-            href="mailto:hello@aneeshrao.dev" 
+            href={`${import.meta.env.BASE_URL}resume.pdf`} 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="navbar__cta"
             onClick={() => setMenuActive(false)}
           >
-            Book a Call
+            Resume
           </a>
         </div>
       </div>

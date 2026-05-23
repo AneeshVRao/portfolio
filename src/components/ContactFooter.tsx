@@ -37,22 +37,6 @@ const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 )
 
-const TwitterIcon = ({ size = 16 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-  </svg>
-)
-
 export default function ContactFooter() {
   const [email, setEmail] = useState('')
 
@@ -83,12 +67,15 @@ export default function ContactFooter() {
             {/* Column 1: Contact Details */}
             <FadeUp>
               <div className="footer-col__title">Email</div>
-              <div className="footer-col__value">
-                <a href="mailto:hello@aneeshrao.dev">hello@aneeshrao.dev</a>
+              <div className="footer-col__value" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <a href="mailto:aneeshvrao2017@gmail.com">aneeshvrao2017@gmail.com</a>
+                <a href="mailto:av24ecb0a03@student.nitw.ac.in" style={{ fontSize: '0.85em', opacity: 0.8 }}>av24ecb0a03@student.nitw.ac.in</a>
               </div>
 
               <div className="footer-col__title">Phone</div>
-              <div className="footer-col__value">+91 XXX XXX XXXX</div>
+              <div className="footer-col__value">
+                <a href="tel:+919611476544">+91 9611476544</a>
+              </div>
             </FadeUp>
 
             {/* Column 2: Empty or monogram logo */}
@@ -122,7 +109,7 @@ export default function ContactFooter() {
             </div>
             <div className="footer-socials">
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/aneesh-venkatesha-rao/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="footer-social-link"
@@ -131,7 +118,7 @@ export default function ContactFooter() {
                 <LinkedinIcon size={16} />
               </a>
               <a 
-                href="https://github.com/aneesh-venkatesha-rao" 
+                href="https://github.com/AneeshVRao" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="footer-social-link"
@@ -140,16 +127,7 @@ export default function ContactFooter() {
                 <GithubIcon size={16} />
               </a>
               <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="footer-social-link"
-                aria-label="Twitter Profile"
-              >
-                <TwitterIcon size={16} />
-              </a>
-              <a 
-                href="mailto:hello@aneeshrao.dev" 
+                href="mailto:aneeshvrao2017@gmail.com" 
                 className="footer-social-link"
                 aria-label="Send Email"
               >

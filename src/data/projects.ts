@@ -3,6 +3,8 @@
 //  To add a project: copy one object, paste it, fill in fields.
 //  To remove: delete the object.
 //  To reorder: drag objects up/down (order = display order).
+//  To edit: change the properties of the objects.
+//  Portfolio is placed as the 10th project.
 // ─────────────────────────────────────────────────────────────
 
 export type ProjectStatus = 'shipped' | 'in-progress' | 'archived'
@@ -22,58 +24,141 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // ── Featured ──────────────────────────────────────────────
+  // ── Featured (4 Projects) ──────────────────────────────────
   {
-    id: 'project-ai-agent',
-    title: 'AI Coding Agent',
-    tagline: 'Autonomous multi-step coding agent built on Claude Code + MCP.',
-    description: 'An agentic loop that uses Anthropic\'s tool-use API to plan, scaffold, write, and test code across a full codebase. Integrated with GitHub MCP for PR automation.',
-    tags: ['TypeScript', 'Anthropic SDK', 'MCP', 'Node.js'],
+    id: 'contextcraft',
+    title: 'ContextCraft',
+    tagline: 'CLI + API + Web UI that indexes codebases with tree-sitter, pgvector, and Cohere.',
+    description: 'An autonomous codebase indexing and semantic search system. It parses source files into AST-aware chunks using tree-sitter, maps internal import dependency graphs, enriches nodes with git metadata, and stores vector embeddings in pgvector. Implements a hybrid lexical-semantic search query pipeline with Cohere reranking for precise developer contextual answers.',
+    tags: ['Python', 'tree-sitter', 'pgvector', 'FastAPI', 'Cohere'],
     status: 'shipped',
     year: 2025,
-    liveUrl: 'https://github.com/AneeshVRao/portfolio', // linking to current portfolio repo or typical url
-    repoUrl: 'https://github.com/AneeshVRao/portfolio',
-    image: 'projects/ai-agent.jpg',
+    repoUrl: 'https://github.com/AneeshVRao/ContextCraft',
+    image: 'projects/contextcraft.png',
     featured: true,
   },
   {
-    id: 'project-azure-dashboard',
-    title: 'Azure AI Dashboard',
-    tagline: 'Real-time monitoring for Azure AI deployments with cost analytics.',
-    description: 'Full-stack dashboard built with React + FastAPI that surfaces Azure AI usage, latency, and cost trends. One-click alerts via webhooks.',
-    tags: ['React', 'FastAPI', 'Azure AI', 'Azure Storage'],
+    id: 'shabdsetu',
+    title: 'ShabdSetu',
+    tagline: 'AI-powered language learning platform for Indian languages.',
+    description: "A production-grade language learning application built for Indian regional languages. It utilizes AI4Bharat's state-of-the-art IndicTrans2 models for translation, indic-transliteration for automated phonetic scripts, and the Web Speech API for real-time word-level pronunciation feedback. Integrates a gamified achievements engine, custom dashboards, and user-driven dialect contribution pipelines.",
+    tags: ['Next.js', 'FastAPI', 'TypeScript', 'Tailwind CSS', 'Clerk'],
+    status: 'shipped',
+    year: 2026,
+    liveUrl: 'https://shabdsetu.vercel.app',
+    repoUrl: 'https://github.com/AneeshVRao/ShabdSetu',
+    image: 'projects/shabdsetu.png',
+    featured: true,
+  },
+  {
+    id: 'dev-saarathi',
+    title: 'Dev-Saarathi',
+    tagline: 'VS Code AI Copilot supporting voice and text in 11 Indian languages.',
+    description: 'A modern VS Code AI copilot supporting dual voice and text interactions in 11 Indian regional languages. Powered by Amazon Bedrock Nova Pro and Amazon Transcribe for highly accurate voice-to-text, it acts as a localized developer companion. Features include syntax highlighting, localized explanations, and one-click code modification insertion.',
+    tags: ['TypeScript', 'VS Code Extension', 'AWS Lambda', 'Amazon Bedrock', 'Python'],
     status: 'shipped',
     year: 2025,
-    repoUrl: 'https://github.com/AneeshVRao/portfolio',
-    image: 'projects/azure-dashboard.jpg',
+    repoUrl: 'https://github.com/ashb155/dev-saarathi',
+    image: 'projects/dev-saarathi.png',
+    featured: true,
+  },
+  {
+    id: 'nexus',
+    title: 'Nexus',
+    tagline: 'Production-grade HTTP load balancer in Go with active/passive health checking.',
+    description: 'A highly reliable, production-ready HTTP reverse proxy and load balancer engineered in Go. It handles heavy traffic distribution across backend instances utilizing a thread-safe round-robin algorithm. Includes active health checking via background TCP probes, passive failure detection using custom HTTP transport round-trippers, and graceful retries for zero-downtime failover.',
+    tags: ['Go', 'Load Balancing', 'Networking', 'Reverse Proxy', 'Concurrency'],
+    status: 'shipped',
+    year: 2025,
+    repoUrl: 'https://github.com/AneeshVRao/nexus-lb',
+    image: 'projects/nexus.png',
     featured: true,
   },
 
-  // ── Standard ──────────────────────────────────────────────
+  // ── Standard (7 Projects) ──────────────────────────────────
   {
-    id: 'project-portfolio',
-    title: 'This Portfolio',
-    tagline: 'Built with Vite + React, deployed on GitHub Pages.',
-    description: 'Designed and built from scratch — inspired by editorial coach site aesthetics, adapted for engineering/AI branding.',
-    tags: ['React', 'Framer Motion', 'TypeScript', 'Vite'],
+    id: 'humanify',
+    title: 'Humanify',
+    tagline: 'Transform AI-generated text into natural, human-sounding writing instantly.',
+    description: 'A production-ready SaaS application designed to bypass AI detection by rewriting generated text into natural, human-sounding copy. Engineered with Next.js 16, TypeScript, and Supabase, it features automated LLM routing between Gemini and Claude, multi-tone customization, rate-limiting, and Stripe payment integration for active monetized subscriptions.',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Gemini / Claude'],
     status: 'shipped',
     year: 2025,
-    repoUrl: 'https://github.com/AneeshVRao/portfolio',
+    liveUrl: 'https://humanify-kohl.vercel.app',
+    repoUrl: 'https://github.com/AneeshVRao/Humanify',
+    image: 'projects/humanify.png',
     featured: false,
   },
-
-  // ── Template: copy this block to add a new project ────────
-  // {
-  //   id: 'project-unique-id',       ← must be unique
-  //   title: 'Project Name',
-  //   tagline: 'One-line description.',
-  //   description: 'Longer 2–3 sentence description.',
-  //   tags: ['Tag1', 'Tag2', 'Tag3'],
-  //   status: 'shipped',             ← 'shipped' | 'in-progress' | 'archived'
-  //   year: 2025,
-  //   liveUrl: 'https://...',        ← optional
-  //   repoUrl: 'https://...',        ← optional
-  //   image: 'projects/name.jpg',    ← optional, place in /src/assets/images/projects/
-  //   featured: false,
-  // },
+  {
+    id: 'bayesianimc-core',
+    title: 'BayesianIMC-Core',
+    tagline: 'Hardware-efficient Bayesian In-Memory Computing Engine in Verilog RTL.',
+    description: 'A hardware-efficient Bayesian In-Memory Computing core designed in Verilog RTL for low-power edge AI processing. It executes probabilistic inference directly in memory to minimize data transfer bottlenecks. Features SRAM-based weight tables, confidence-driven stochastic weight perturbation using 8-bit LFSR random number generators, and a Kogge-Stone popcount adder pipeline.',
+    tags: ['Verilog', 'Hardware Design', 'In-Memory Computing', 'Vivado', 'Bayesian Inference'],
+    status: 'shipped',
+    year: 2024,
+    repoUrl: 'https://github.com/AneeshVRao/BayesianIMC-Core',
+    image: 'projects/bayesianimc-core.png',
+    featured: false,
+  },
+  {
+    id: 'chrono',
+    title: 'Chrono',
+    tagline: 'Multi-asset machine learning quantitative trading engine built for research.',
+    description: 'An institutional-grade, multi-asset quantitative trading and machine learning backtesting engine. Implemented in Python, it prevents lookahead bias and data leakage using strict walk-forward temporal cross-validation. Employs soft-voting ensemble ML models (XGBoost, Random Forest, Logistic Regression) combined with volatility-targeting portfolio optimization for active risk management across diverse universes.',
+    tags: ['Python', 'scikit-learn', 'XGBoost', 'pandas', 'Quantitative Finance'],
+    status: 'shipped',
+    year: 2025,
+    repoUrl: 'https://github.com/AneeshVRao/Chrono',
+    image: 'projects/chrono.png',
+    featured: false,
+  },
+  {
+    id: 'prodscrape',
+    title: 'ProdScrape',
+    tagline: 'Automated web scraper to find suppliers from Indian trade and export portals.',
+    description: 'An automated enterprise-level web scraping system designed to extract supplier information from commercial and government Indian trade portals. Built with BeautifulSoup and Scrapy, it features complex request rotation, robust error recovery, and automated duplicate removal. Converts raw tabular structures into highly polished Excel and CSV summaries with analytics dashboards.',
+    tags: ['Python', 'BeautifulSoup', 'Scrapy', 'YAML', 'Pandas'],
+    status: 'shipped',
+    year: 2025,
+    repoUrl: 'https://github.com/AneeshVRao/product-supplier-scraper',
+    image: 'projects/prodscrape.png',
+    featured: false,
+  },
+  {
+    id: 'glyph',
+    title: 'Glyph',
+    tagline: 'A terminal-style, local-first note-taking application with keyboard-driven workflows.',
+    description: 'A terminal-themed, keyboard-driven local-first note-taking application designed for speed and privacy. Powered by React, TypeScript, and Dexie (IndexedDB), all data is processed and stored strictly client-side. Employs full-text index searching, tag organization, command-line autocompletion, customizable retro CRT styling (Matrix and Solarized), and secure JSON backup exports.',
+    tags: ['React', 'TypeScript', 'Dexie', 'Tailwind CSS', 'Vite'],
+    status: 'shipped',
+    year: 2025,
+    repoUrl: 'https://github.com/AneeshVRao/Glyph',
+    image: 'projects/glyph.png',
+    featured: false,
+  },
+  {
+    id: 'portfolio',
+    title: 'This Portfolio',
+    tagline: 'Sleek, high-fidelity developer portfolio built with React and Framer Motion.',
+    description: 'A sleek, professional developer portfolio built from scratch to showcase advanced engineering, systems programming, and machine learning work. Engineered using React, TypeScript, and Vite, it incorporates custom CSS variables, a premium glassmorphic dark-theme aesthetic, responsive flex layouts, and smooth micro-animations driven by Framer Motion.',
+    tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'CSS Grid'],
+    status: 'shipped',
+    year: 2026,
+    repoUrl: 'https://github.com/AneeshVRao/portfolio',
+    image: 'projects/portfolio.png',
+    featured: false,
+  },
+  {
+    id: 'fpga-brain-tumor-segmentation',
+    title: 'FPGA Brain Tumor Segmentation',
+    tagline: 'Hardware-accelerated medical image segmentation system on FPGA with 144–229x speedup.',
+    description: 'A high-throughput medical image segmentation system implemented on Nexys 4 DDR FPGAs, achieving 144x-229x acceleration over CPU benchmarks. Features a custom pipelined Otsu thresholding and morphological filter hardware accelerator (II=1 loops) coded in Vitis HLS. Integrates a MicroBlaze processor, running an adaptive control FSM for varying precision modes.',
+    tags: ['VHDL', 'Verilog', 'HLS', 'MicroBlaze', 'FPGA'],
+    status: 'shipped',
+    year: 2026,
+    repoUrl: 'https://github.com/akulasahasra75/FPGA--Brain-Tumor-Segmentation',
+    image: 'projects/fpga-brain-tumor-segmentation.png',
+    featured: false,
+  }
 ]

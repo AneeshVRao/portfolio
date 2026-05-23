@@ -7,18 +7,57 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
+jspm_packages/
 
-# Editor directories and files
-.vscode/*
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+
+# IDEs/Editors
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
+*.suo
+*.ntvsca
+*.njsproj
+*.sln
 *.sw?
+.DS_Store
+Thumbs.db
 
-# Agent files
+# OS Files
+.DS_Store*
+ehthumbs.db
+Icon?
+
+# Local test outputs and artifacts
+fullpage.png
+hero.png
+projects.png
+take_screenshots.cjs
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Agent files and lockfiles
 .agents/
+skills-lock.json
 
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vite cache/temporary files
+vite.config.ts.timestamp-*
+.vite
+
+# Linter cache
+.eslintcache

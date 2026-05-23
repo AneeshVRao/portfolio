@@ -29,9 +29,12 @@ interface Props {
   variant: 'featured' | 'standard'
 }
 
-// Helper to resolve images dynamically in Vite
+// Dynamically import all images in assets/images using Vite's glob import
+const projectImages = import.meta.glob<{ default: string }>('../../assets/images/projects/*.{png,jpg,jpeg,svg,gif,webp}', { eager: true })
+
 const getImageUrl = (imagePath: string) => {
-  return new URL(`../../assets/images/${imagePath}`, import.meta.url).href
+  const key = `../../assets/images/${imagePath}`
+  return projectImages[key]?.default || ''
 }
 
 export default function ProjectCard({ project, variant }: Props) {
@@ -52,7 +55,7 @@ export default function ProjectCard({ project, variant }: Props) {
           <span className="project-year">{project.year}</span>
         </div>
         <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__tagline">{project.tagline}</p>
+        <p className="project-card__tagline">{project.description}</p>
         <div className="project-card__tags">
           {project.tags.map(t => <span key={t} className="project-tag">{t}</span>)}
         </div>

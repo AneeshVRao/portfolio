@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, Minus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { faqs } from '../data/faqs'
 import FadeUp from './ui/FadeUp'
@@ -24,7 +24,7 @@ export default function FAQ() {
               Have questions about my technical background, development workflows, or availability? Let's clear them up. If your question isn't answered here, feel free to drop me an email directly.
             </p>
             <a 
-              href="mailto:hello@aneeshrao.dev" 
+              href="mailto:aneeshvrao2017@gmail.com" 
               className="pain__checklist-btn"
               style={{ display: 'inline-flex', marginTop: 0 }}
             >
@@ -45,8 +45,12 @@ export default function FAQ() {
                       aria-expanded={isOpen}
                     >
                       <span>{faq.q}</span>
-                      <span className="faq-item__icon">
-                        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                      <span className="faq-item__icon" style={{
+                        transform: isOpen ? 'rotate(135deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                        display: 'inline-block'
+                      }}>
+                        <Plus size={18} />
                       </span>
                     </button>
                     

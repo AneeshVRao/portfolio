@@ -10,20 +10,42 @@ const roles = [
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      {/* Blended Background Photo */}
-      <img
+      {/* Blended Background Photo — cinematic scale-in */}
+      <motion.img
         src={heroPhoto}
         className="hero-photo"
         alt="Aneesh Venkatesha Rao"
+        initial={{ opacity: 0, scale: 1.35, x: '-50%', y: '-50%' }}
+        animate={{ opacity: 0.9, scale: 1.2, x: '-50%', y: '-50%' }}
+        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* Gradient Color Overlay */}
-      <div className="hero-overlay" />
+      <motion.div
+        className="hero-overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      />
 
-      {/* Background Watermark */}
+      {/* Background Watermark — staggered slide-in */}
       <div className="hero-watermark">
-        <span className="hero-watermark-row">ANEESH</span>
-        <span className="hero-watermark-row">VENKATESHA RAO</span>
+        <motion.span
+          className="hero-watermark-row"
+          initial={{ opacity: 0, x: -120 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        >
+          ANEESH
+        </motion.span>
+        <motion.span
+          className="hero-watermark-row"
+          initial={{ opacity: 0, x: 120 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          VENKATESHA RAO
+        </motion.span>
       </div>
 
       {/* Glass Greeting Bubble Card */}
