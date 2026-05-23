@@ -36,9 +36,15 @@ async function runTests() {
 
     // 4. Validate Hero Section
     console.log('Checking Hero Section...');
+    // Wait for the typewriter greeting to start typing after the curtain slides up
+    await page.waitForFunction(() => {
+      const text = document.querySelector('.hero-greeting p:first-child')?.textContent || '';
+      return text.includes("Hi");
+    }, { timeout: 6000 });
+    
     const greetingText = await page.textContent('.hero-greeting p:first-child');
     console.log(`✅ Hero greeting text: "${greetingText}"`);
-    if (!greetingText.trim().startsWith("I'm")) throw new Error('Hero greeting is wrong!');
+    if (!greetingText.trim().startsWith("Hi")) throw new Error('Hero greeting is wrong!');
 
     const roleBadgesCount = await page.locator('.hero-roles .role-line').count();
     console.log(`✅ Number of role badges in Hero: ${roleBadgesCount}`);

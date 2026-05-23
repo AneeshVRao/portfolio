@@ -10,42 +10,31 @@ const roles = [
 
 export default function Hero() {
   const [typedText, setTypedText] = useState('')
-  const phrases = [
-    "I'm Aneesh!",
-    "I build AI systems.",
-    "I design full-stack apps.",
-    "I write open-source code."
-  ]
-  const [phraseIndex, setPhraseIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [charIndex, setCharIndex] = useState(0)
+  const [startTyping, setStartTyping] = useState(false)
+  const [showCursor, setShowCursor] = useState(true)
+  const phrase = "Hi, I'm Aneesh"
 
   useEffect(() => {
-    const currentPhrase = phrases[phraseIndex]
-    let timer: number
+    // Delay start of typing until after page load curtain slides up
+    const t = window.setTimeout(() => setStartTyping(true), 1800)
+    return () => window.clearTimeout(t)
+  }, [])
 
-    if (isDeleting) {
-      timer = window.setTimeout(() => {
-        setTypedText(currentPhrase.substring(0, charIndex - 1))
-        setCharIndex(prev => prev - 1)
-      }, 50)
-    } else {
-      timer = window.setTimeout(() => {
-        setTypedText(currentPhrase.substring(0, charIndex + 1))
-        setCharIndex(prev => prev + 1)
-      }, 100)
+  useEffect(() => {
+    if (!startTyping) return
+
+    if (typedText.length === phrase.length) {
+      // Hide cursor 1 second after typing finishes
+      const cursorTimer = window.setTimeout(() => setShowCursor(false), 1000)
+      return () => window.clearTimeout(cursorTimer)
     }
 
-    if (!isDeleting && charIndex === currentPhrase.length) {
-      // Pause at full text
-      timer = window.setTimeout(() => setIsDeleting(true), 2000)
-    } else if (isDeleting && charIndex === 0) {
-      setIsDeleting(false)
-      setPhraseIndex(prev => (prev + 1) % phrases.length)
-    }
+    const timer = window.setTimeout(() => {
+      setTypedText(phrase.substring(0, typedText.length + 1))
+    }, 100)
 
     return () => window.clearTimeout(timer)
-  }, [charIndex, isDeleting, phraseIndex])
+  }, [startTyping, typedText])
 
   return (
     <section id="hero" className="hero">
@@ -87,21 +76,29 @@ export default function Hero() {
         </motion.span>
       </div>
 
-      {/* Glass Greeting Bubble Card */}
+      {/* Glass Greeting Bubble Card & Location Wrapper */}
       <motion.div 
-        className="hero-greeting"
+        className="hero-greeting-wrapper"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p style={{ fontFamily: 'var(--font-script)', fontSize: 22, color: '#fff', marginBottom: 8, minHeight: '32px', display: 'flex', alignItems: 'center' }}>
-          {typedText}
-          <span className="typewriter-cursor">|</span>
-        </p>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>
-          Building AI-powered products, scalable systems,
-          and open-source tools that ship fast and last.
-        </p>
+        <div className="hero-greeting">
+          <p style={{ fontFamily: 'var(--font-script)', fontSize: 22, color: '#fff', marginBottom: 8, minHeight: '32px', display: 'flex', alignItems: 'center' }}>
+            {typedText}
+            {showCursor && <span className="typewriter-cursor">|</span>}
+          </p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>
+            Building AI-powered products, scalable systems,
+            and open-source tools that ship fast and last.
+          </p>
+        </div>
+
+        {/* Location pulse bar moved below the greeting card */}
+        <div className="hero-location-bar">
+          <span className="location-pulse"></span>
+          <span className="location-text">Location: Warangal, India (NIT Warangal)</span>
+        </div>
       </motion.div>
 
       {/* Role Badges */}
@@ -122,4 +119,3 @@ export default function Hero() {
     </section>
   )
 }
-
