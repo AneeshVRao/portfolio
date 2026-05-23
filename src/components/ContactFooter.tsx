@@ -39,13 +39,61 @@ const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
 
 export default function ContactFooter() {
   const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
-    alert(`Thank you! Signed up with: ${email}`)
-    setEmail('')
+
+    setStatus('loading')
+
+    // EmailJS configuration keys (from vite environment variables)
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_default'
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact'
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    // If public key is not set, simulate sending for a smooth local developer setup
+    if (!publicKey) {
+      setTimeout(() => {
+        alert(`Thank you! Signed up with: ${email}`)
+        setEmail('')
+        setStatus('idle')
+      }, 800)
+      return
+    }
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: {
+            user_email: email,
+            message: `New contact request from: ${email}`,
+            reply_to: email,
+          },
+        }),
+      })
+
+      if (response.ok) {
+        alert(`Success! Thank you for reaching out. Aneesh will contact you at ${email} soon.`)
+        setEmail('')
+      } else {
+        throw new Error('EmailJS send error')
+      }
+    } catch (err) {
+      console.error('EmailJS Error:', err)
+      alert('Oops! There was a problem sending your message. Please try again later.')
+    } finally {
+      setStatus('idle')
+    }
   }
+
 
   return (
     <footer id="contact" style={{ width: '100%' }}>
@@ -95,9 +143,19 @@ export default function ContactFooter() {
                   className="footer-input"
                   required
                 />
-                <button type="submit" className="footer-submit" aria-label="Submit Form">
+                <button 
+                  type="submit" 
+                  className="footer-submit" 
+                  aria-label="Submit Form"
+                  disabled={status === 'loading'}
+                  style={{ 
+                    opacity: status === 'loading' ? 0.6 : 1,
+                    cursor: status === 'loading' ? 'not-allowed' : 'pointer'
+                  }}
+                >
                   <ArrowRight size={18} />
                 </button>
+
               </form>
             </FadeUp>
           </div>

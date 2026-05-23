@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import heroPhoto from '../assets/images/hero-photo.jpg'
 
@@ -8,6 +9,44 @@ const roles = [
 ]
 
 export default function Hero() {
+  const [typedText, setTypedText] = useState('')
+  const phrases = [
+    "I'm Aneesh!",
+    "I build AI systems.",
+    "I design full-stack apps.",
+    "I write open-source code."
+  ]
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [charIndex, setCharIndex] = useState(0)
+
+  useEffect(() => {
+    const currentPhrase = phrases[phraseIndex]
+    let timer: number
+
+    if (isDeleting) {
+      timer = window.setTimeout(() => {
+        setTypedText(currentPhrase.substring(0, charIndex - 1))
+        setCharIndex(prev => prev - 1)
+      }, 50)
+    } else {
+      timer = window.setTimeout(() => {
+        setTypedText(currentPhrase.substring(0, charIndex + 1))
+        setCharIndex(prev => prev + 1)
+      }, 100)
+    }
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      // Pause at full text
+      timer = window.setTimeout(() => setIsDeleting(true), 2000)
+    } else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false)
+      setPhraseIndex(prev => (prev + 1) % phrases.length)
+    }
+
+    return () => window.clearTimeout(timer)
+  }, [charIndex, isDeleting, phraseIndex])
+
   return (
     <section id="hero" className="hero">
       {/* Blended Background Photo — cinematic scale-in */}
@@ -55,8 +94,9 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p style={{ fontFamily: 'var(--font-script)', fontSize: 22, color: '#fff', marginBottom: 8 }}>
-          I'm Aneesh!
+        <p style={{ fontFamily: 'var(--font-script)', fontSize: 22, color: '#fff', marginBottom: 8, minHeight: '32px', display: 'flex', alignItems: 'center' }}>
+          {typedText}
+          <span className="typewriter-cursor">|</span>
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>
           Building AI-powered products, scalable systems,
@@ -82,3 +122,4 @@ export default function Hero() {
     </section>
   )
 }
+

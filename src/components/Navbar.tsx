@@ -1,9 +1,31 @@
 import { useState, useEffect } from 'react'
+import { Sun, Moon } from 'lucide-react'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light' | 'beige'>('dark')
   const [menuActive, setMenuActive] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme')
+      if (saved) return saved === 'dark'
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    return true
+  })
+
+  useEffect(() => {
+    const root = document.documentElement
+    if (isDark) {
+      root.setAttribute('data-theme', 'dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      root.setAttribute('data-theme', 'light')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [isDark])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +59,13 @@ export default function Navbar() {
         }
       }
       setTheme(activeTheme)
+
+      // Scroll progress calculation
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100
+        setScrollProgress(progress)
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -47,18 +76,30 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar ${scrolled || menuActive ? 'navbar--scrolled' : ''} ${scrolled || menuActive ? `navbar--theme-${theme}` : ''}`}>
-      <div className="container">
+      <div className="container" style={{ position: 'relative' }}>
         <a href="#hero" className="navbar__logo">AVR</a>
 
-        <button 
-          className="navbar__burger" 
-          onClick={() => setMenuActive(!menuActive)}
-          aria-label="Toggle Navigation Menu"
-        >
-          <span style={{ transform: menuActive ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></span>
-          <span style={{ opacity: menuActive ? 0 : 1 }}></span>
-          <span style={{ transform: menuActive ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}></span>
-        </button>
+        <div className="navbar__actions" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: 'auto' }}>
+          {/* Mobile Theme Toggle */}
+          <button 
+            className="theme-toggle theme-toggle--mobile" 
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle Dark Mode"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button 
+            className="navbar__burger" 
+            onClick={() => setMenuActive(!menuActive)}
+            aria-label="Toggle Navigation Menu"
+            style={{ margin: 0 }}
+          >
+            <span style={{ transform: menuActive ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></span>
+            <span style={{ opacity: menuActive ? 0 : 1 }}></span>
+            <span style={{ transform: menuActive ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }}></span>
+          </button>
+        </div>
 
         <div className={`navbar__menu ${menuActive ? 'navbar__menu--active' : ''}`}>
           <a href="#about" className="navbar__link" onClick={() => setMenuActive(false)}>About</a>
@@ -72,11 +113,38 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="navbar__cta"
             onClick={() => setMenuActive(false)}
+            style={{ marginBottom: menuActive ? '10px' : '0' }}
           >
             Resume
           </a>
+
+          {/* Desktop Theme Toggle */}
+          <button 
+            className="theme-toggle theme-toggle--desktop" 
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle Dark Mode"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
         </div>
       </div>
+
+      {/* Scroll Progress Bar Indicator (placed outside container to span full width and offset downwards) */}
+      <div 
+        className="navbar-progress-bar"
+        style={{
+          position: 'absolute',
+          bottom: scrolled || menuActive ? '-3px' : '-20px',
+          left: 0,
+          height: '3px',
+          width: `${scrollProgress}%`,
+          background: 'var(--accent)',
+          transition: 'width 0.1s ease-out, bottom 0.3s ease',
+          opacity: scrolled || menuActive ? 1 : 0,
+        }}
+      />
     </nav>
+
   )
 }
+

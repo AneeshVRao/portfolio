@@ -38,7 +38,7 @@ async function runTests() {
     console.log('Checking Hero Section...');
     const greetingText = await page.textContent('.hero-greeting p:first-child');
     console.log(`✅ Hero greeting text: "${greetingText}"`);
-    if (!greetingText.includes("I'm Aneesh!")) throw new Error('Hero greeting is wrong!');
+    if (!greetingText.trim().startsWith("I'm")) throw new Error('Hero greeting is wrong!');
 
     const roleBadgesCount = await page.locator('.hero-roles .role-line').count();
     console.log(`✅ Number of role badges in Hero: ${roleBadgesCount}`);
