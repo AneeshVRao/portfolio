@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <title>Aneesh Venkatesha Rao</title>
+  <script>
+    // GitHub Pages SPA redirect
+    const path = window.location.pathname;
+    const base = '/';
+    if (path !== '/' && path !== '') {
+      window.location.replace(
+        window.location.origin + base + '?p=' +
+        encodeURIComponent(path.replace(/^\//, '')) +
+        window.location.search
+      );
+    }
+  </script>
+</head><body></body></html>
