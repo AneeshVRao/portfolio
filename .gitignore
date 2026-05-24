@@ -66,6 +66,7 @@ desktop.ini
 # Only ignore generated/cached agent outputs:
 .claude/cache/
 .agent/cache/
+.agents/
 
 # ── Linting ──────────────────────────────────────────────────
 .eslintcache
