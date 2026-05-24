@@ -6,7 +6,6 @@ import Hero from './components/Hero'
 import About from './components/About'
 import TechnicalToolkit from './components/TechnicalToolkit'
 import Experience from './components/Experience'
-import Method from './components/Method'
 import Projects from './components/Projects'
 import Certifications from './components/Certifications'
 import FAQ from './components/FAQ'
@@ -69,7 +68,6 @@ function App() {
         <About />
         <TechnicalToolkit />
         <Experience />
-        <Method />
         <Projects />
         <Certifications />
         <FAQ />

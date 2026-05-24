@@ -5,7 +5,7 @@ import heroPhoto from '../assets/images/hero-photo.jpg'
 const roles = [
   { num: '01', label: 'Full-Stack & AI Developer',   active: true },
   { num: '02', label: 'ECE @ NIT Warangal',          active: false },
-  { num: '03', label: 'Hardware-Software Codesign',  active: false },
+  { num: '03', label: 'AI Systems & RTL Engineer',  active: false },
 ]
 
 const phrase = "Hi, I'm Aneesh"
