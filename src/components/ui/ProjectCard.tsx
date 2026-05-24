@@ -4,9 +4,10 @@ import { GithubIcon } from './icons'
 import { getImageUrl } from '../../utils/images'
 
 const STATUS_LABELS = {
-  'shipped':     { label: 'Shipped',      color: 'var(--icon-teal)', bg: 'var(--icon-teal-bg)' },
-  'in-progress': { label: 'In Progress',  color: 'var(--accent)',    bg: 'var(--accent-light)'  },
-  'archived':    { label: 'Archived',     color: 'var(--text-muted)', bg: 'var(--bg-ghost-hover)' },
+  'shipped':      { label: 'Shipped',      color: 'var(--icon-teal)',  bg: 'var(--icon-teal-bg)'  },
+  'in-progress':  { label: 'In Progress',  color: 'var(--accent)',     bg: 'var(--accent-light)'  },
+  'open-source':  { label: 'Open Source',  color: 'var(--color-oss)',  bg: 'var(--color-oss-bg)'  },
+  'archived':     { label: 'Archived',     color: 'var(--text-muted)', bg: 'rgba(0,0,0,0.06)'     },
 }
 
 interface Props {

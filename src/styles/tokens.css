@@ -20,6 +20,10 @@
   --icon-teal:       #1a7a6a;
   --icon-teal-bg:    rgba(26, 122, 106, 0.12);
 
+  /* ── Open Source Status ─────────────────────── */
+  --color-oss:     #6366f1;
+  --color-oss-bg:  rgba(99, 102, 241, 0.10);
+
   /* ── Borders ────────────────────────────────── */
   --border:          rgba(0, 0, 0, 0.08);
   --border-strong:   rgba(0, 0, 0, 0.18);
@@ -70,6 +74,8 @@
     --accent:        #e06820;
     --accent-hover:  #ff853c;
     --accent-light:  rgba(224, 104, 32, 0.14);
+    --color-oss:     #818cf8;
+    --color-oss-bg:  rgba(129, 140, 248, 0.12);
     --bg-ghost:        rgba(255, 255, 255, 0.04);
     --bg-ghost-hover:  rgba(255, 255, 255, 0.08);
     --bg-tag:          rgba(255, 255, 255, 0.05);
@@ -101,6 +107,8 @@
   --accent:        #e06820;
   --accent-hover:  #ff853c;
   --accent-light:  rgba(224, 104, 32, 0.14);
+  --color-oss:     #818cf8;
+  --color-oss-bg:  rgba(129, 140, 248, 0.12);
   --bg-ghost:        rgba(255, 255, 255, 0.04);
   --bg-ghost-hover:  rgba(255, 255, 255, 0.08);
   --bg-tag:          rgba(255, 255, 255, 0.05);

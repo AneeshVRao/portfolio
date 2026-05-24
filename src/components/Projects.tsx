@@ -9,6 +9,13 @@ import SectionEyebrow from './ui/SectionEyebrow'
 import { GithubIcon } from './ui/icons'
 import { getImageUrl } from '../utils/images'
 
+const STATUS_LABELS = {
+  'shipped':      { label: 'Shipped',      color: 'var(--icon-teal)',  bg: 'var(--icon-teal-bg)'  },
+  'in-progress':  { label: 'In Progress',  color: 'var(--accent)',     bg: 'var(--accent-light)'  },
+  'open-source':  { label: 'Open Source',  color: 'var(--color-oss)',  bg: 'var(--color-oss-bg)'  },
+  'archived':     { label: 'Archived',     color: 'var(--text-muted)', bg: 'rgba(0,0,0,0.06)'     },
+}
+
 export default function Projects() {
   const [isExpanded, setIsExpanded] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -198,10 +205,10 @@ export default function Projects() {
               <div className="project-modal__body">
                 <div className="project-modal__meta">
                   <span className="project-status-pill" style={{
-                    color: selectedProject.status === 'shipped' ? 'var(--icon-teal)' : selectedProject.status === 'in-progress' ? 'var(--accent)' : 'var(--text-muted)',
-                    background: selectedProject.status === 'shipped' ? 'var(--icon-teal-bg)' : selectedProject.status === 'in-progress' ? 'var(--accent-light)' : 'var(--bg-ghost-hover)'
+                    color: STATUS_LABELS[selectedProject.status].color,
+                    background: STATUS_LABELS[selectedProject.status].bg
                   }}>
-                    {selectedProject.status === 'shipped' ? 'Shipped' : selectedProject.status === 'in-progress' ? 'In Progress' : 'Archived'}
+                    {STATUS_LABELS[selectedProject.status].label}
                   </span>
                   <span className="project-year">{selectedProject.year}</span>
                 </div>

@@ -33,11 +33,12 @@ export const experienceData: TimelineItem[] = [
     period: '2024 — Present',
     title: 'Freelance & Open Source',
     subtitle: 'Independent Developer',
-    description: 'Contracting for early-stage teams and building custom web tools, API integrations, and data scrapers.',
+    description: 'Building custom web utilities, database scrapers, and contributing to open-source software packages.',
     highlights: [
-      'Developed ProdScrape, a supplier directory scraper using Python, BeautifulSoup, and Scrapy, featuring request throttling and user-agent rotation to parse public trade portal tables into cleaned pandas datasets.',
-      'Built a confidential local-first data parsing utility using React, TypeScript, and FastAPI to parse and validate unstructured product inventory schemas into custom database targets, reducing processing lag.',
-      'Contributed performance fixes and automated testing suites to open-source developer tooling repositories.'
+      'Built ProdScrape — a Python scraping pipeline for product data aggregation across e-commerce sites',
+      'Built a Zoom-like video conferencing web app with real-time WebRTC peer connections and room management',
+      'Open source contributor — Kubeflow docs-agent · ImageLab (Apache 2.0)',
+      '30+ public repositories across TypeScript, Python, Go, and Verilog',
     ],
     tags: ['React', 'Node.js', 'TypeScript', 'Web Scraping', 'CI/CD'],
     icon: '💻'

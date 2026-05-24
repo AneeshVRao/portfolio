@@ -20,18 +20,16 @@ export const skills: Skill[] = [
   { id: 'typescript',      name: 'TypeScript',            category: 'Programming Languages',   featured: true  },
   { id: 'javascript',      name: 'JavaScript',            category: 'Programming Languages'                    },
   { id: 'cpp',             name: 'C/C++',                 category: 'Programming Languages'                    },
-  { id: 'bash',            name: 'Bash',                  category: 'Programming Languages',   featured: true  },
-  { id: 'java',            name: 'Java',                  category: 'Programming Languages'                    },
+  { id: 'bash',            name: 'Bash',                  category: 'Programming Languages'                    },
   { id: 'sql',             name: 'SQL',                   category: 'Programming Languages'                    },
-  { id: 'kotlin',          name: 'Kotlin',                category: 'Programming Languages'                    },
   { id: 'matlab',          name: 'MATLAB',                category: 'Programming Languages'                    },
 
   // AI & Machine Learning
   { id: 'rag',             name: 'RAG',                   category: 'AI & Machine Learning',   featured: true  },
   { id: 'llms',            name: 'LLMs',                  category: 'AI & Machine Learning',   featured: true  },
   { id: 'langchain',       name: 'LangChain',             category: 'AI & Machine Learning'                    },
-  { id: 'langgraph',       name: 'LangGraph',             category: 'AI & Machine Learning',   featured: true  },
-  { id: 'pgvector',        name: 'pgvector',              category: 'AI & Machine Learning',   featured: true  },
+  { id: 'langgraph',       name: 'LangGraph',             category: 'AI & Machine Learning'                    },
+  { id: 'pgvector',        name: 'pgvector',              category: 'AI & Machine Learning'                    },
   { id: 'pytorch',         name: 'PyTorch',               category: 'AI & Machine Learning',   featured: true  },
   { id: 'tensorflow',      name: 'TensorFlow',            category: 'AI & Machine Learning'                    },
   { id: 'huggingface',     name: 'Hugging Face',          category: 'AI & Machine Learning'                    },
@@ -41,6 +39,7 @@ export const skills: Skill[] = [
   { id: 'gemini-api',      name: 'Gemini API',            category: 'AI & Machine Learning'                    },
   { id: 'openai-api',      name: 'OpenAI API',            category: 'AI & Machine Learning'                    },
   { id: 'ollama',          name: 'Ollama',                category: 'AI & Machine Learning'                    },
+  { id: 'anthropic',       name: 'Anthropic SDK',         category: 'AI & Machine Learning',   featured: true  },
 
   // Backend & Databases
   { id: 'fastapi',         name: 'FastAPI',               category: 'Backend & Databases',     featured: true  },
@@ -50,9 +49,7 @@ export const skills: Skill[] = [
   { id: 'postgresql',      name: 'PostgreSQL',            category: 'Backend & Databases',     featured: true  },
   { id: 'mongodb',         name: 'MongoDB',               category: 'Backend & Databases'                      },
   { id: 'firebase',        name: 'Firebase',              category: 'Backend & Databases'                      },
-  { id: 'kafka',           name: 'Apache Kafka',          category: 'Backend & Databases'                      },
   { id: 'rest-api',        name: 'REST APIs',             category: 'Backend & Databases'                      },
-  { id: 'graphql',         name: 'GraphQL',               category: 'Backend & Databases'                      },
 
   // Cloud, Infra & Tools
   { id: 'aws',             name: 'AWS',                   category: 'Cloud, Infra & Tools',    featured: true  },
@@ -61,6 +58,7 @@ export const skills: Skill[] = [
   { id: 'git',             name: 'Git',                   category: 'Cloud, Infra & Tools'                     },
   { id: 'github',          name: 'GitHub',                category: 'Cloud, Infra & Tools'                     },
   { id: 'cicd',            name: 'CI/CD (GitHub Actions)',category: 'Cloud, Infra & Tools',    featured: true  },
+  { id: 'railway',         name: 'Railway',               category: 'Cloud, Infra & Tools'                     },
 
   // Frontend & Design
   { id: 'nextjs',          name: 'Next.js',               category: 'Frontend & Design',       featured: true  },
@@ -70,7 +68,6 @@ export const skills: Skill[] = [
   { id: 'framer-motion',   name: 'Framer Motion',         category: 'Frontend & Design'                        },
   { id: 'figma',           name: 'Figma',                 category: 'Frontend & Design'                        },
   { id: 'vercel',          name: 'Vercel',                category: 'Frontend & Design'                        },
-  { id: 'railway',         name: 'Railway',               category: 'Frontend & Design'                        },
 
   // Hardware & Systems
   { id: 'verilog',         name: 'Verilog',               category: 'Hardware & Systems',      featured: true  },

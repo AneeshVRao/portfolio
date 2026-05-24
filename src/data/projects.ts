@@ -7,7 +7,7 @@
 //  Portfolio is placed as the 10th project.
 // ─────────────────────────────────────────────────────────────
 
-export type ProjectStatus = 'shipped' | 'in-progress' | 'archived'
+export type ProjectStatus = 'shipped' | 'in-progress' | 'open-source' | 'archived'
 
 export interface Project {
   id: string
@@ -33,6 +33,7 @@ export const projects: Project[] = [
     tags: ['Python', 'tree-sitter', 'pgvector', 'FastAPI', 'Cohere'],
     status: 'shipped',
     year: 2025,
+    liveUrl: 'https://pypi.org/project/contextcraft-py/',
     repoUrl: 'https://github.com/AneeshVRao/ContextCraft',
     image: 'projects/contextcraft.png',
     featured: true,
@@ -43,7 +44,7 @@ export const projects: Project[] = [
     tagline: 'AI-powered language learning platform for Indian languages.',
     description: "An AI-powered Indic language learning platform built for Indian regional languages. It utilizes AI4Bharat's state-of-the-art IndicTrans2 models for translation, indic-transliteration for automated phonetic scripts, and the Web Speech API for real-time word-level pronunciation feedback. Integrates a gamified achievements engine, custom dashboards, and user-driven dialect contribution pipelines.",
     tags: ['Next.js', 'FastAPI', 'TypeScript', 'Tailwind CSS', 'Clerk'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2026,
     liveUrl: 'https://shabdsetu.vercel.app',
     repoUrl: 'https://github.com/AneeshVRao/ShabdSetu',
@@ -68,7 +69,7 @@ export const projects: Project[] = [
     tagline: 'Concurrent HTTP load balancer in Go with active/passive health checking.',
     description: 'A concurrent, custom HTTP reverse proxy and load balancer engineered in Go. It distributes traffic across backend instances utilizing a thread-safe round-robin algorithm. Includes active health checking via background TCP probes, passive failure detection using custom HTTP transport round-trippers, and graceful retries for zero-downtime failover.',
     tags: ['Go', 'Load Balancing', 'Networking', 'Reverse Proxy', 'Concurrency'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2025,
     repoUrl: 'https://github.com/AneeshVRao/nexus-lb',
     image: 'projects/nexus.png',
@@ -95,7 +96,7 @@ export const projects: Project[] = [
     tagline: 'Hardware-efficient Bayesian In-Memory Computing Engine in Verilog RTL.',
     description: 'A hardware-efficient Bayesian In-Memory Computing core designed in Verilog RTL for low-power edge AI processing. It executes probabilistic inference directly in memory to minimize data transfer bottlenecks. Features SRAM-based weight tables, confidence-driven stochastic weight perturbation using 8-bit LFSR random number generators, and a Kogge-Stone popcount adder pipeline.',
     tags: ['Verilog', 'Hardware Design', 'In-Memory Computing', 'Vivado', 'Bayesian Inference'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2024,
     repoUrl: 'https://github.com/AneeshVRao/BayesianIMC-Core',
     image: 'projects/bayesianimc-core.png',
@@ -107,7 +108,7 @@ export const projects: Project[] = [
     tagline: 'Multi-asset machine learning quantitative trading engine built for research.',
     description: 'A machine learning-driven quantitative trading and backtesting pipeline built for strategy research. Implemented in Python, it uses walk-forward temporal cross-validation to prevent lookahead bias. Employs ensemble ML models (XGBoost, Random Forest) and volatility-targeting portfolio optimization to backtest risk-managed strategies across historical data.',
     tags: ['Python', 'scikit-learn', 'XGBoost', 'pandas', 'Quantitative Finance'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2025,
     repoUrl: 'https://github.com/AneeshVRao/Chrono',
     image: 'projects/chrono.png',
@@ -119,7 +120,7 @@ export const projects: Project[] = [
     tagline: 'Automated web scraper to find suppliers from Indian trade and export portals.',
     description: 'An automated web scraping pipeline built to extract supplier information from public Indian trade portals. Built with BeautifulSoup and Scrapy, it features request throttling, user-agent rotation to handle rate limits, and automated duplicate removal. It parses raw HTML tables into cleaned CSV/Excel files for supplier analysis.',
     tags: ['Python', 'BeautifulSoup', 'Scrapy', 'YAML', 'Pandas'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2025,
     repoUrl: 'https://github.com/AneeshVRao/product-supplier-scraper',
     image: 'projects/prodscrape.png',
@@ -131,7 +132,7 @@ export const projects: Project[] = [
     tagline: 'A terminal-style, local-first note-taking application with keyboard-driven workflows.',
     description: 'A terminal-themed, keyboard-driven local-first note-taking application designed for speed and privacy. Powered by React, TypeScript, and Dexie (IndexedDB), all data is processed and stored strictly client-side. Employs full-text index searching, tag organization, command-line autocompletion, customizable retro CRT styling (Matrix and Solarized), and secure JSON backup exports.',
     tags: ['React', 'TypeScript', 'Dexie', 'Tailwind CSS', 'Vite'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2025,
     repoUrl: 'https://github.com/AneeshVRao/Glyph',
     image: 'projects/glyph.png',
@@ -143,7 +144,7 @@ export const projects: Project[] = [
     tagline: 'Sleek, high-fidelity developer portfolio built with React and Framer Motion.',
     description: 'A sleek, professional developer portfolio built from scratch to showcase advanced engineering, systems programming, and machine learning work. Engineered using React, TypeScript, and Vite, it incorporates custom CSS variables, a premium glassmorphic dark-theme aesthetic, responsive flex layouts, and smooth micro-animations driven by Framer Motion.',
     tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'CSS Grid'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2026,
     repoUrl: 'https://github.com/AneeshVRao/portfolio',
     image: 'projects/portfolio.png',
@@ -155,7 +156,7 @@ export const projects: Project[] = [
     tagline: 'Hardware-accelerated medical image segmentation system on FPGA with 144–229x speedup.',
     description: 'A high-throughput medical image segmentation system implemented on Nexys 4 DDR FPGAs, achieving 144x-229x acceleration over CPU benchmarks. Features a custom pipelined Otsu thresholding and morphological filter hardware accelerator (II=1 loops) coded in Vitis HLS. Integrates a MicroBlaze processor, running an adaptive control FSM for varying precision modes.',
     tags: ['VHDL', 'Verilog', 'HLS', 'MicroBlaze', 'FPGA'],
-    status: 'shipped',
+    status: 'open-source',
     year: 2026,
     repoUrl: 'https://github.com/akulasahasra75/FPGA--Brain-Tumor-Segmentation',
     image: 'projects/fpga-brain-tumor-segmentation.png',
