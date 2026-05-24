@@ -17,7 +17,7 @@ export default function Hero() {
 
   const { scrollY } = useScroll()
   const isMobile = typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
-  const photoY = useTransform(scrollY, [0, 600], [0, isMobile ? 0 : 240])
+  const photoY = useTransform(scrollY, [0, 1000], ['-50%', isMobile ? '-50%' : '-30%'])
 
   useEffect(() => {
     // Delay start of typing until after page load curtain slides up
