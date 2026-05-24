@@ -1483,7 +1483,7 @@ button, .cta-button {
 /* ── Certifications Section ────────────────── */
 .certifications {
   padding: 80px 0;
-  background-color: var(--bg-white);
+  background-color: var(--bg-light);
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -1510,12 +1510,12 @@ button, .cta-button {
 
 .certifications-marquee::before {
   left: 0;
-  background: linear-gradient(to right, var(--bg-white) 0%, transparent 100%);
+  background: linear-gradient(to right, var(--bg-light) 0%, transparent 100%);
 }
 
 .certifications-marquee::after {
   right: 0;
-  background: linear-gradient(to left, var(--bg-white) 0%, transparent 100%);
+  background: linear-gradient(to left, var(--bg-light) 0%, transparent 100%);
 }
 
 .certifications-track {

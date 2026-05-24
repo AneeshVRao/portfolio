@@ -42,9 +42,9 @@ export default function Navbar() {
         about: 'beige',
         toolkit: 'light',
         experience: 'beige',
-        projects: 'beige',
-        certifications: 'light',
-        faq: 'beige',
+        projects: 'light',
+        certifications: 'beige',
+        faq: 'light',
         contact: 'dark',
       }
 

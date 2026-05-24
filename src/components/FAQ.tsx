@@ -13,7 +13,7 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" aria-label="Frequently Asked Questions" style={{ background: 'var(--bg-light)', padding: '80px 0' }}>
+    <section id="faq" aria-label="Frequently Asked Questions" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
       <div className="container">
         <div className="faq-grid">
           {/* Left Column: Heading + Call to Action */}
