@@ -927,8 +927,8 @@ button, .cta-button {
 }
 
 .footer-social-link {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
@@ -949,6 +949,10 @@ button, .cta-button {
 .navbar__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
   gap: 5px;
   background: none;
   border: none;
@@ -1401,7 +1405,8 @@ button, .cta-button {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2130,8 +2135,8 @@ footer#contact::after {
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--text-primary);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;

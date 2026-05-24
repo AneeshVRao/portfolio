@@ -23,6 +23,15 @@ export default function ProjectCard({ project, variant, onClick }: Props) {
     <article 
       className={`project-card project-card--${variant}`}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault()
+          onClick()
+        }
+      }}
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
+      aria-label={onClick ? `View details for ${project.title}` : undefined}
       style={{ cursor: onClick ? 'pointer' : 'default' }}
     >
       {project.image && (
