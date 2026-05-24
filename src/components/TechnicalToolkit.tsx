@@ -5,7 +5,7 @@ import SectionEyebrow from './ui/SectionEyebrow'
 
 export default function TechnicalToolkit() {
   return (
-    <section id="toolkit" aria-label="Technical Toolkit and Skills" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
+    <section id="skills" aria-label="Technical skills" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
       <div className="container">
         <FadeUp>
           <SectionEyebrow>Skills</SectionEyebrow>

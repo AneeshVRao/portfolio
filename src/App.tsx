@@ -14,6 +14,9 @@ import ContactFooter from './components/ContactFooter'
 function App() {
   const [isLoading, setIsLoading] = useState(true)
 
+  const [cursor, setCursor] = useState({ x: -999, y: -999 })
+  const [isOnDark, setIsOnDark] = useState(false)
+
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | undefined
     let handleLoadTimeoutId: ReturnType<typeof setTimeout> | undefined
@@ -57,8 +60,26 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      setCursor({ x: e.clientX, y: e.clientY })
+      const el = document.elementFromPoint(e.clientX, e.clientY)
+      setIsOnDark(!!el?.closest('.dark-section, .hero, .footer-body'))
+    }
+    window.addEventListener('mousemove', onMove)
+    return () => window.removeEventListener('mousemove', onMove)
+  }, [])
+
   return (
     <>
+      <a href="#about" className="skip-link">Skip to main content</a>
+      {isOnDark && (
+        <div
+          className="cursor-glow"
+          style={{ left: cursor.x, top: cursor.y }}
+          aria-hidden="true"
+        />
+      )}
       <AnimatePresence mode="wait">
         {isLoading && <PageCurtain />}
       </AnimatePresence>

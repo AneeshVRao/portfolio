@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Sun, Moon } from 'lucide-react'
+import { motion } from 'framer-motion'
 import safeStorage from '../utils/storage'
 
 export default function Navbar() {
@@ -36,11 +37,11 @@ export default function Navbar() {
       setScrolled(!isTop)
 
       // Section theme mapping
-      const sections = ['hero', 'about', 'toolkit', 'experience', 'projects', 'certifications', 'faq', 'contact']
+      const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'certifications', 'faq', 'contact']
       const sectionThemes: Record<string, 'dark' | 'light' | 'beige'> = {
         hero: 'dark',
         about: 'beige',
-        toolkit: 'light',
+        skills: 'light',
         experience: 'beige',
         projects: 'light',
         certifications: 'beige',
@@ -107,9 +108,25 @@ export default function Navbar() {
         aria-label="Main Navigation"
       >
         <div className="container" style={{ position: 'relative' }}>
-          <a href="#hero" className="navbar__logo">
-            AVR<span style={{ color: 'var(--accent)' }}>.</span>
-          </a>
+          <motion.a
+            href="#hero"
+            className="navbar__logo"
+            whileHover="hover"
+            initial="rest"
+          >
+            <motion.span
+              variants={{ rest: { letterSpacing: '0.05em' }, hover: { letterSpacing: '0.18em' } }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
+              AVR
+            </motion.span>
+            <motion.span
+              className="navbar__logo-dot"
+              variants={{ rest: { scale: 1, opacity: 0.6 }, hover: { scale: 1.5, opacity: 1 } }}
+              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+              aria-hidden="true"
+            />
+          </motion.a>
 
           <div className="navbar__actions" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: 'auto' }}>
             {/* Mobile Theme Toggle */}
@@ -142,8 +159,8 @@ export default function Navbar() {
               About
             </a>
             <a 
-              href="#toolkit" 
-              className={`navbar__link ${activeSection === 'toolkit' ? 'navbar__link--active' : ''}`} 
+              href="#skills" 
+              className={`navbar__link ${activeSection === 'skills' ? 'navbar__link--active' : ''}`} 
               onClick={() => setMenuActive(false)}
             >
               Toolkit

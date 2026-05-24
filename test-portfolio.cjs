@@ -106,21 +106,31 @@ async function runTests() {
     // 9. Capture Responsive Screenshots
     console.log('Capturing responsive screenshots...');
     const fs = require('fs');
-    if (!fs.existsSync('screenshots')) {
-      fs.mkdirSync('screenshots');
+    if (!fs.existsSync('docs/screenshots')) {
+      fs.mkdirSync('docs/screenshots', { recursive: true });
     }
-    const viewports = [
-      { name: 'mobile',  width: 390,  height: 844  },
-      { name: 'tablet',  width: 768,  height: 1024 },
-      { name: 'desktop', width: 1440, height: 900  },
-    ];
-    for (const vp of viewports) {
-      console.log(`Taking screenshot for ${vp.name}...`);
-      await page.setViewportSize({ width: vp.width, height: vp.height });
-      await page.waitForTimeout(500); // Allow animations to settle
-      await page.screenshot({ path: `screenshots/${vp.name}.png`, fullPage: true });
-      console.log(`✅ Captured screenshots/${vp.name}.png`);
+    const VIEWPORTS = [
+      { name: 'mobile',       width: 390,  height: 844  },
+      { name: 'tablet',       width: 768,  height: 1024 },
+      { name: 'desktop',      width: 1440, height: 900  },
+      { name: 'desktop-wide', width: 1920, height: 1080 },
+    ]
+    for (const vp of VIEWPORTS) {
+      await page.setViewportSize({ width: vp.width, height: vp.height })
+      await page.waitForTimeout(400) // let layout settle
+      await page.screenshot({
+        path: `docs/screenshots/${vp.name}.png`,
+        fullPage: true
+      })
+      console.log(`✅ Screenshot captured: ${vp.name} (${vp.width}×${vp.height})`)
     }
+
+    // Capture dark mode screenshot
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.screenshot({ path: 'docs/screenshots/desktop-dark.png', fullPage: true })
+    console.log('✅ Screenshot captured: desktop-dark')
+    await page.emulateMedia({ colorScheme: 'light' })
 
     console.log('🎉 All tests completed successfully!');
   } catch (error) {

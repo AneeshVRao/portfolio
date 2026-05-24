@@ -16,8 +16,8 @@ export default function Hero() {
   const [showCursor, setShowCursor] = useState(true)
 
   const { scrollY } = useScroll()
-  // Translate from -50% (initial center) downwards by scroll offset to create parallax depth
-  const translateY = useTransform(scrollY, [0, 1000], ['-50%', '-30%'])
+  const isMobile = typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  const photoY = useTransform(scrollY, [0, 600], [0, isMobile ? 0 : 240])
 
   useEffect(() => {
     // Delay start of typing until after page load curtain slides up
@@ -42,17 +42,20 @@ export default function Hero() {
   }, [startTyping, typedText])
 
   return (
-    <section id="hero" className="hero" aria-label="Introduction and Summary">
+    <section id="hero" className="hero" aria-label="Introduction">
       {/* Blended Background Photo — cinematic scale-in with parallax scroll */}
       <motion.img
-        src={heroPhoto}
+        style={{ y: photoY }}
         className="hero-photo"
+        src={heroPhoto}
         alt="Aneesh Venkatesha Rao"
         initial={{ opacity: 0, scale: 1.35, x: '-50%' }}
         animate={{ opacity: 0.9, scale: 1.2, x: '-50%' }}
-        style={{ y: translateY }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
         fetchPriority="high"
+        loading="eager"
+        width={800}
+        height={1000}
       />
 
       {/* Cinematic Film Grain Overlay */}

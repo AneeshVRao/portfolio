@@ -19,8 +19,16 @@ const STATUS_LABELS = {
 export default function Projects() {
   const [isExpanded, setIsExpanded] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const featured = projects.filter(p => p.featured)
-  const standard = projects.filter(p => !p.featured)
+  const [activeTag, setActiveTag] = useState('All')
+
+  const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags)))]
+
+  const filtered = activeTag === 'All'
+    ? projects
+    : projects.filter(p => p.tags.includes(activeTag))
+
+  const featured = filtered.filter(p => p.featured)
+  const standard = filtered.filter(p => !p.featured)
 
   const reduceMotion = useReducedMotion()
   const modalRef = useRef<HTMLDivElement>(null)
@@ -86,7 +94,7 @@ export default function Projects() {
   }, [selectedProject])
 
   return (
-    <section id="projects" aria-label="Software Projects" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
+    <section id="projects" aria-label="Projects" style={{ background: 'var(--bg-white)', padding: '80px 0' }}>
       <div className="container">
         <FadeUp>
           <SectionEyebrow>Projects</SectionEyebrow>
@@ -94,13 +102,36 @@ export default function Projects() {
           <p className="section-sub">A selection of real products, tools, and experiments. Click any card to view detailed specifications.</p>
         </FadeUp>
 
+        {/* Project Technology Filter Bar */}
+        <div className="project-filters" role="group" aria-label="Filter projects by technology">
+          {allTags.map(tag => (
+            <button
+              key={tag}
+              className={`filter-pill ${activeTag === tag ? 'filter-pill--active' : ''}`}
+              onClick={() => setActiveTag(tag)}
+              aria-pressed={activeTag === tag}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
         {/* Featured grid — 2 columns */}
         <div className="projects-featured-grid">
-          {featured.map((p, i) => (
-            <FadeUp key={p.id} delay={i * 0.1}>
-              <ProjectCard project={p} variant="featured" onClick={() => setSelectedProject(p)} />
-            </FadeUp>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {featured.map((p) => (
+              <motion.div
+                key={p.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <ProjectCard project={p} variant="featured" onClick={() => setSelectedProject(p)} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
         {/* Standard grid under toggle — 3 columns */}
@@ -116,33 +147,49 @@ export default function Projects() {
                   style={{ width: '100%', overflow: 'hidden' }}
                 >
                   <div className="projects-standard-grid" style={{ paddingTop: '24px' }}>
-                    {standard.map((p, i) => (
-                      <FadeUp key={p.id} delay={i * 0.05}>
-                        <ProjectCard project={p} variant="standard" onClick={() => setSelectedProject(p)} />
-                      </FadeUp>
-                    ))}
-                    
-                    {/* GitHub Redirect Card */}
-                    <FadeUp delay={standard.length * 0.05}>
-                      <a
-                        href="https://github.com/AneeshVRao"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-card project-card--standard github-more-card"
-                        aria-label="Explore more repositories on GitHub (opens in a new tab)"
+                    <AnimatePresence mode="popLayout">
+                      {standard.map((p) => (
+                        <motion.div
+                          key={p.id}
+                          layout
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          <ProjectCard project={p} variant="standard" onClick={() => setSelectedProject(p)} />
+                        </motion.div>
+                      ))}
+                      
+                      {/* GitHub Redirect Card */}
+                      <motion.div
+                        key="github-redirect"
+                        layout
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="github-icon-circle">
-                          <GithubIcon size={28} />
-                        </div>
-                        <h3 className="project-card__title">For further more projects</h3>
-                        <p className="project-card__tagline">
-                          Click here to explore my other repositories, open-source work, and codebases on GitHub.
-                        </p>
-                        <span className="project-btn project-btn--ghost">
-                          Click Here
-                        </span>
-                      </a>
-                    </FadeUp>
+                        <a
+                          href="https://github.com/AneeshVRao"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-card project-card--standard github-more-card"
+                          aria-label="Explore more repositories on GitHub (opens in a new tab)"
+                        >
+                          <div className="github-icon-circle">
+                            <GithubIcon size={28} />
+                          </div>
+                          <h3 className="project-card__title">For further more projects</h3>
+                          <p className="project-card__tagline">
+                            Click here to explore my other repositories, open-source work, and codebases on GitHub.
+                          </p>
+                          <span className="project-btn project-btn--ghost">
+                            Click Here
+                          </span>
+                        </a>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               )}

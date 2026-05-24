@@ -79,7 +79,7 @@ export default function ContactFooter() {
 
 
   return (
-    <footer id="contact" aria-label="Contact and Footer Links" style={{ width: '100%' }}>
+    <section id="contact" aria-label="Contact" style={{ width: '100%' }}>
       {/* Marquee Banner */}
       <div className="marquee-banner">
         <div className="marquee-track">
@@ -206,6 +206,6 @@ export default function ContactFooter() {
           </div>
         </div>
       </div>
-    </footer>
+    </section>
   )
 }

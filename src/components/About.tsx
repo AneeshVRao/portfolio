@@ -184,7 +184,7 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" style={{ background: 'var(--bg-light)', padding: '80px 0' }} aria-labelledby="about-heading">
+    <section id="about" style={{ background: 'var(--bg-light)', padding: '80px 0' }} aria-label="About Aneesh">
       <div className="container">
         <div className="about-grid">
           {/* Left Column: Headline copy */}

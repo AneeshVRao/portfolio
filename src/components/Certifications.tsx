@@ -75,7 +75,7 @@ export default function Certifications() {
   const duplicatedList = [...certifications, ...certifications, ...certifications]
 
   return (
-    <section id="certifications" className="certifications" aria-label="Certifications and Credentials">
+    <section id="certifications" className="certifications" aria-label="Certifications">
       <div className="container">
         <FadeUp>
           <SectionEyebrow>Credentials</SectionEyebrow>
