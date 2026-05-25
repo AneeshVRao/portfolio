@@ -1349,12 +1349,12 @@ button, .cta-button {
   .hero {
     height: auto;
     min-height: 100vh;
-    padding: 120px 24px 80px;
+    padding: 100px 16px 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 28px;
   }
   
   .hero-photo {
@@ -1362,8 +1362,12 @@ button, .cta-button {
     top: 0;
     right: 0;
     transform: none;
-    width: 312px;
-    height: 408px;
+    width: 100%;
+    max-width: min(290px, 70vw);
+    aspect-ratio: 312 / 408;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
     margin: 0 auto;
     order: 1;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);

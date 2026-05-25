@@ -21,7 +21,19 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activeTag, setActiveTag] = useState('All')
 
-  const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags)))]
+
+  const tagCounts = projects.flatMap(p => p.tags).reduce<Record<string, number>>((acc, tag) => {
+    acc[tag] = (acc[tag] ?? 0) + 1
+    return acc
+  }, {})
+
+  const allTags = [
+    'All',
+    ...Object.entries(tagCounts)
+      .filter(([, count]) => count >= 2)
+      .sort((a, b) => b[1] - a[1])   // most common first
+      .map(([tag]) => tag)
+  ]
 
   const filtered = activeTag === 'All'
     ? projects
@@ -29,6 +41,9 @@ export default function Projects() {
 
   const featured = filtered.filter(p => p.featured)
   const standard = filtered.filter(p => !p.featured)
+
+  const showMoreButton = filtered.length > 4
+  const shouldShowStandard = !showMoreButton || isExpanded
 
   const reduceMotion = useReducedMotion()
   const modalRef = useRef<HTMLDivElement>(null)
@@ -108,7 +123,10 @@ export default function Projects() {
             <button
               key={tag}
               className={`filter-pill ${activeTag === tag ? 'filter-pill--active' : ''}`}
-              onClick={() => setActiveTag(tag)}
+              onClick={() => {
+                setActiveTag(tag)
+                setIsExpanded(false)
+              }}
               aria-pressed={activeTag === tag}
             >
               {tag}
@@ -138,7 +156,7 @@ export default function Projects() {
         {standard.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <AnimatePresence initial={false}>
-              {isExpanded && (
+              {shouldShowStandard && (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
@@ -195,20 +213,22 @@ export default function Projects() {
               )}
             </AnimatePresence>
 
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="projects-more-btn"
-            >
-              {isExpanded ? (
-                <>
-                  Show Less <ChevronUp size={16} />
-                </>
-              ) : (
-                <>
-                  More Projects <ChevronDown size={16} />
-                </>
-              )}
-            </button>
+            {showMoreButton && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="projects-more-btn"
+              >
+                {isExpanded ? (
+                  <>
+                    Show Less <ChevronUp size={16} />
+                  </>
+                ) : (
+                  <>
+                    More Projects <ChevronDown size={16} />
+                  </>
+                )}
+              </button>
+            )}
           </div>
         )}
       </div>

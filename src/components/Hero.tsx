@@ -16,8 +16,18 @@ export default function Hero() {
   const [showCursor, setShowCursor] = useState(true)
 
   const { scrollY } = useScroll()
-  const isMobile = typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
-  const photoY = useTransform(scrollY, [0, 1000], ['-50%', isMobile ? '-50%' : '-30%'])
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)')
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    media.addEventListener('change', listener)
+    return () => media.removeEventListener('change', listener)
+  }, [])
+
+  const photoY = useTransform(scrollY, [0, 1000], ['-50%', '-30%'])
 
   useEffect(() => {
     // Delay start of typing until after page load curtain slides up
@@ -45,12 +55,12 @@ export default function Hero() {
     <section id="hero" className="hero" aria-label="Introduction">
       {/* Blended Background Photo — cinematic scale-in with parallax scroll */}
       <motion.img
-        style={{ y: photoY }}
+        style={isMobile ? {} : { y: photoY }}
         className="hero-photo"
         src={heroPhoto}
         alt="Aneesh Venkatesha Rao"
-        initial={{ opacity: 0, scale: 1.35, x: '-50%' }}
-        animate={{ opacity: 0.9, scale: 1.2, x: '-50%' }}
+        initial={isMobile ? { opacity: 0, scale: 1.05 } : { opacity: 0, scale: 1.35, x: '-50%' }}
+        animate={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0.9, scale: 1.2, x: '-50%' }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
         fetchPriority="high"
         loading="eager"
