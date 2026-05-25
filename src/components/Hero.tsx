@@ -29,6 +29,23 @@ export default function Hero() {
 
   const photoY = useTransform(scrollY, [0, 1000], ['-50%', '-30%'])
 
+  const renderRoles = (isMobileView: boolean) => (
+    <div className="hero-roles">
+      {roles.map((r, index) => (
+        <motion.div 
+          key={r.num}
+          className={`role-line ${r.active ? 'active' : ''}`}
+          initial={isMobileView ? { opacity: 0, y: 10 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: (isMobileView ? 0.6 : 0.6) + index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="role-num">{r.num}</span>
+          <span>{r.label}</span>
+        </motion.div>
+      ))}
+    </div>
+  )
+
   useEffect(() => {
     // Delay start of typing until after page load curtain slides up
     const t = window.setTimeout(() => setStartTyping(true), 1800)
@@ -102,8 +119,8 @@ export default function Hero() {
       {/* Glass Greeting Bubble Card & Location Wrapper */}
       <motion.div 
         className="hero-greeting-wrapper"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={isMobile ? { opacity: 0, y: 20 } : { opacity: 0, x: 50 }}
+        animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="hero-greeting">
@@ -118,6 +135,9 @@ export default function Hero() {
           </p>
         </div>
 
+        {/* Mobile-only Role Badges inside flex flow */}
+        {isMobile && renderRoles(true)}
+
         {/* Location pulse bar moved below the greeting card */}
         <div className="hero-location-bar">
           <span className="location-pulse"></span>
@@ -125,21 +145,8 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Role Badges */}
-      <div className="hero-roles">
-        {roles.map((r, index) => (
-          <motion.div 
-            key={r.num}
-            className={`role-line ${r.active ? 'active' : ''}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 + index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="role-num">{r.num}</span>
-            <span>{r.label}</span>
-          </motion.div>
-        ))}
-      </div>
+      {/* Desktop-only Role Badges */}
+      {!isMobile && renderRoles(false)}
     </section>
   )
 }

@@ -1350,109 +1350,91 @@ button, .cta-button {
   }
   
   .hero {
-    height: 100vh;
-    min-height: 560px;
-    padding: 80px 20px 40px;
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 20px 80px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    gap: 20px;
   }
-  
-  .hero-photo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1.1);
-    width: auto;
-    height: 75vh;
-    max-width: 90vw;
-    object-fit: contain;
-    margin: 0 auto;
-    box-shadow: none;
-    mask-image: radial-gradient(
-      ellipse 60% 70% at 50% 50%,
-      black 30%,
-      rgba(0,0,0,0.7) 60%,
-      transparent 95%
-    );
-    -webkit-mask-image: radial-gradient(
-      ellipse 60% 70% at 50% 50%,
-      black 30%,
-      rgba(0,0,0,0.7) 60%,
-      transparent 95%
-    );
-    mix-blend-mode: luminosity;
-    opacity: 0.3;
-    z-index: 1;
-  }
-  
+
   .hero-greeting-wrapper {
-    position: relative;
-    top: auto;
-    right: auto;
-    max-width: 320px;
     width: 100%;
-    margin: auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 16px;
     z-index: 5;
-    gap: 12px;
   }
-  
+
+  /* Pull greeting card out of absolute flow */
   .hero-greeting {
     position: relative;
     top: auto;
+    right: auto;
     left: auto;
-    transform: none;
     max-width: 100%;
     width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    text-align: center;
-  }
-
-  .hero-greeting h1 {
-    justify-content: center;
+    order: 1;
+    z-index: 5;
   }
 
   .hero-greeting::before {
     display: none;
   }
-  
+
+  /* Pull roles out of absolute flow, stack below card */
   .hero-roles {
     position: relative;
-    top: auto;
+    bottom: auto;
     left: auto;
-    transform: none;
-    margin: 0 auto 20px;
-    align-items: center;
     z-index: 5;
-    gap: 8px;
-  }
-  
-  .hero-watermark {
-    display: block;
-    position: absolute;
-    bottom: 120px;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0.6;
-    text-align: center;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 6px;
+    padding: 0 4px;
   }
 
-  .hero-watermark-row {
-    font-size: clamp(36px, 9vw, 160px);
-    letter-spacing: -1.5px;
+  /* Location bar below roles */
+  .hero-location-bar {
+    order: 3;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  /* Shrink active role font on mobile */
+  .role-line.active {
+    font-size: clamp(16px, 4.5vw, 20px);
+  }
+
+  .role-line {
+    font-size: clamp(13px, 3.5vw, 16px);
+  }
+
+  /* Keep watermark hidden */
+  .hero-watermark {
+    display: none;
+  }
+
+  /* Photo stays as blended background */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    mask-image: none;
+    -webkit-mask-image: none;
+    mix-blend-mode: normal;
+    opacity: 0.35;
+    transform: none !important; /* disable parallax on mobile */
   }
 }
 
