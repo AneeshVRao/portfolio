@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ArrowRight, Mail } from 'lucide-react'
 import FadeUp from './ui/FadeUp'
 import { GithubIcon, LinkedinIcon } from './ui/icons'
@@ -154,7 +155,8 @@ export default function ContactFooter() {
                   tabIndex={-1} 
                   autoComplete="off"
                 />
-                <button 
+                <motion.button 
+                  whileTap={{ scale: 0.95 }}
                   type="submit" 
                   className="footer-submit" 
                   aria-label="Submit Form"
@@ -165,7 +167,7 @@ export default function ContactFooter() {
                   }}
                 >
                   <ArrowRight size={18} />
-                </button>
+                </motion.button>
 
               </form>
             </FadeUp>

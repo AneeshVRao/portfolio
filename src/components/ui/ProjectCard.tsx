@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react'
+import { motion } from 'framer-motion'
 import type { Project } from '../../data/projects'
 import { GithubIcon } from './icons'
 import { getImageUrl } from '../../utils/images'
@@ -20,7 +21,8 @@ export default function ProjectCard({ project, variant, onClick }: Props) {
   const status = STATUS_LABELS[project.status]
 
   return (
-    <article 
+    <motion.article 
+      whileTap={onClick ? { scale: 0.97 } : undefined}
       className={`project-card project-card--${variant}`}
       onClick={onClick}
       onKeyDown={(e) => {
@@ -84,6 +86,6 @@ export default function ProjectCard({ project, variant, onClick }: Props) {
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   )
 }

@@ -214,7 +214,8 @@ export default function Projects() {
             </AnimatePresence>
 
             {showMoreButton && (
-              <button
+              <motion.button
+                whileTap={{ scale: 0.97 }}
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="projects-more-btn"
               >
@@ -227,7 +228,7 @@ export default function Projects() {
                     More Projects <ChevronDown size={16} />
                   </>
                 )}
-              </button>
+              </motion.button>
             )}
           </div>
         )}

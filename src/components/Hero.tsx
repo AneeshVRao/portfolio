@@ -55,12 +55,12 @@ export default function Hero() {
     <section id="hero" className="hero" aria-label="Introduction">
       {/* Blended Background Photo — cinematic scale-in with parallax scroll */}
       <motion.img
-        style={isMobile ? {} : { y: photoY }}
+        style={isMobile ? { y: '-50%' } : { y: photoY }}
         className="hero-photo"
         src={heroPhoto}
         alt="Aneesh Venkatesha Rao"
-        initial={isMobile ? { opacity: 0, scale: 1.05 } : { opacity: 0, scale: 1.35, x: '-50%' }}
-        animate={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0.9, scale: 1.2, x: '-50%' }}
+        initial={isMobile ? { opacity: 0, scale: 1.1, x: '-50%' } : { opacity: 0, scale: 1.35, x: '-50%' }}
+        animate={isMobile ? { opacity: 0.3, scale: 1.15, x: '-50%' } : { opacity: 0.9, scale: 1.2, x: '-50%' }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
         fetchPriority="high"
         loading="eager"

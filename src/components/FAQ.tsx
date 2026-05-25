@@ -23,13 +23,14 @@ export default function FAQ() {
             <p className="section-sub" style={{ marginBottom: 32 }}>
               Have questions about my technical background, development workflows, or availability? Let's clear them up. If your question isn't answered here, feel free to drop me an email directly.
             </p>
-            <a 
+            <motion.a 
+              whileTap={{ scale: 0.97 }}
               href="mailto:aneeshvrao2017@gmail.com" 
               className="pain__checklist-btn"
               style={{ display: 'inline-flex', marginTop: 0 }}
             >
               Ask a Question
-            </a>
+            </motion.a>
           </FadeUp>
 
           {/* Right Column: Accordion List */}
